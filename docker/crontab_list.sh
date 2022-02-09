@@ -57,7 +57,6 @@ ENV_PATH=
 28 3,13 * * * node /scripts/jd_jddt.js >> /log/jd_jddt.log 2>&1
 13 10 * * * node /scripts/jd_dpqd.js >> /log/jd_dpqd.log 2>&1
 8 9 * * * node /scripts/jd_dpqd2.js >> /log/jd_dpqd2.log 2>&1
-20 8,10 * * * node /scripts/jd_DrawEntrance.js >> log/jd_DrawEntrance.log 2>&1
 33 9,13 * * * node /scripts/jd_dqmh.js >> /log/jd_dqmh.log 2>&1
 20 * * * * node /scripts/jd_dreamFactory.js >> /log/jd_dreamFactory.log 2>&1
 29 0-23/4 * * * node /scripts/jd_ddnc_farmpark.js >> /log/jd_ddnc_farmpark.log 2>&1
