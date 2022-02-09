@@ -138,7 +138,7 @@ ENV_PATH=
 26 0,9,18,23 * * * node /scripts/jd_nnfls.js >> /log/jd_nnfls.js 2>&1
 5 1,10 * * * node /scripts/jd_necklace.js >> /log/jd_necklace.log 2>&1
 02 8,18 * * * node /scripts/jd_opencard.js >> /log/jd_opencard.log 2>&1
-12 8,18 * * * node /scripts/jd_order.js >> /log/jd_order.log 2>&1
+12 8,18 * * * node /scripts/jd_orderlist.js >> /log/jd_orderlist.log 2>&1
 22 8,18 * * * node /scripts/jd_opencard1.js >> /log/jd_opencard1.log 2>&1
 32 8,18 * * * node /scripts/jd_opencard2.js >> /log/jd_opencard2.log 2>&1
 42 8,18 * * * node /scripts/jd_opencard3.js >> /log/jd_opencard3.log 2>&1
