@@ -29,6 +29,7 @@ $.needPhone = $.getData($.NEED_PHONE) || 'N';
 $.phoneList = JSON.parse($.getData($.PHONE_LIST_KEY) || '{}');
 $.isMuteLog = true;
 $.page = 1;
+const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
 
 let cookies = [];
 $.getData('CookieJD') && cookies.push($.getData('CookieJD'));
