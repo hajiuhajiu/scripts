@@ -44,6 +44,7 @@ const length = $.waybillCodeArr.length;
 $.log(`💡缓存数据：${length}条`);
 
 $.userNum = $.getData($.USER_NUM) || cookies.length;
+$.log(`$.userNum`);
 
 const total = $.pageMax * $.userNum;
 if (length > total) {
