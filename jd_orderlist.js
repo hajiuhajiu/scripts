@@ -122,7 +122,7 @@ const opts = {
         ) {
           await showMsg(userInfo, wuLiuDetail, w);
           console.log($.logText);
-          await $.wait(777);
+          await $.wait(7777);
         }
       }
     }
@@ -244,7 +244,7 @@ function showMsg(userInfo, wuLiuDetail, k) {
       $.logText += `------------------------------------\n`;
     }
 
-    $.name = `京东物流 账号：${userInfo.baseInfo.nickname}`;
+    $.name = `京东物流 9999999999999999999999账号：${userInfo.baseInfo.nickname}`;
     $.subt = ``;
     $.desc = `📦${carriersName.replace(/包裹|大件/, '')}：${waybillCode}`;
     $.phone =
