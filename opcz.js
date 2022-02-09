@@ -38,6 +38,20 @@ const extraCookies = JSON.parse($.getData('CookiesJD') || '[]').map(
   (item) => item.cookie
 );
 cookies = Array.from(new Set([...cookies, ...extraCookies]));
+if ($.isNode()) {
+  Object.keys(jdCookieNode).forEach((item) => {
+    cookies.push(jdCookieNode[item])
+  })
+  if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
+} else {
+  let cookiesData = $.getdata('CookiesJD') || "[]";
+  cookiesData = jsonParse(cookiesData);
+  cookies = cookiesData.map(item => item.cookie);
+  cookies.reverse();
+  cookies.push(...[$.getdata('CookieJD2'), $.getdata('CookieJD')]);
+  cookies.reverse();
+  cookies = cookiesArr.filter(item => item !== "" && item !== null && item !== undefined);
+}
 
 // 清除过期缓存
 const length = $.waybillCodeArr.length;
