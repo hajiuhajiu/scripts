@@ -31,6 +31,7 @@ $.isMuteLog = true;
 $.page = 1;
 const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
 
+
 let cookies = [];
 $.getData('CookieJD') && cookies.push($.getData('CookieJD'));
 $.getData('CookieJD2') && cookies.push($.getData('CookieJD2'));
@@ -95,6 +96,8 @@ const opts = {
   for (let index = 0; index < $.userNum; index++) {
     $.cookie = cookies[index];
     opts.headers.Cookie = $.cookie;
+    
+    
 
     userInfo = await getUserInfo();
     orderList = [];
