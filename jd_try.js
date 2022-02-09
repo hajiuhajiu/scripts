@@ -570,17 +570,17 @@ async function showMsg() {
     let message = ``;
     message += `👤 京东账号${$.index} ${$.nickName || $.UserName}\n`;
     if ($.totalSuccess !== 0 && $.totalTry !== 0) {
-        message += `🎉 本次提交申请：${$.totalSuccess}/${$.totalTry}个商品🛒\n`;
+        message += `🎉 本次提交申请：${$.totalSuccess}/${$.totalTry}个商品🛒`;
         message += `🎉 ${$.successNum}个商品待领取\n`;
-        message += `🎉 ${$.getNum}个商品已领取\n`;
-        message += `🎉 ${$.completeNum}个商品已完成\n`;
-        message += `🗑 ${$.giveupNum}个商品已放弃\n\n`;
+        //message += `🎉 ${$.getNum}个商品已领取\n`;
+        //message += `🎉 ${$.completeNum}个商品已完成\n`;
+        //message += `🗑 ${$.giveupNum}个商品已放弃\n\n`;
     } else {
-        message += `⚠️ 本次执行没有申请试用商品\n`;
+        message += `⚠️ 本次执行没有申请试用商品`;
         message += `🎉 ${$.successNum}个商品待领取\n`;
-        message += `🎉 ${$.getNum}个商品已领取\n`;
-        message += `🎉 ${$.completeNum}个商品已完成\n`;
-        message += `🗑 ${$.giveupNum}个商品已放弃\n\n`;
+        //message += `🎉 ${$.getNum}个商品已领取\n`;
+        //message += `🎉 ${$.completeNum}个商品已完成\n`;
+        //message += `🗑 ${$.giveupNum}个商品已放弃\n\n`;
     }
     if (!args_xh.jdNotify || args_xh.jdNotify === 'false') {
         $.msg($.name, ``, message, {
