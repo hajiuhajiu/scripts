@@ -88,6 +88,8 @@ const opts = {
     '处理成功',
     '已消费',
     '充值成功',
+    '已签收',
+    '话费',
   ];
 
   for (let index = 0; index < $.userNum; index++) {
