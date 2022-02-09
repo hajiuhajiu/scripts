@@ -150,7 +150,6 @@ ENV_PATH=
 0 */6 * * * node /scripts/jd_plantBean.js >> /log/jd_plantBean.log 2>&1
 8 9 * * * node /scripts/jd_plus_bean.js >> /log/jd_plus_bean.log 2>&1
 35 13,17,19 * * * node /scripts/jd_redPacket.js >> /log/jd_redPacket.log 2>&1
-#59 19,20,22 * * * node /scripts/jd_redEnvelope.js >> /log/jd_redEnvelope.log 2>&1
 27 8 * * * node /scripts/jd_sgmh.js >> /log/jd_sgmh.log 2>&1
 30 8,12 * * * node /scripts/jd_split.js >> /log/jd_split.log 2>&1
 26 5 * * * node /scripts/jd_shake.js >> /log/jd_shake.log 2>&1
@@ -169,8 +168,8 @@ ENV_PATH=
 18 6,9,15,17 * * * node /scripts/jd_superBrand1.js >> log/jd_superBrand1.log 2>&1
 11 */3 * * * node /scripts/jd_superMarket.js >> /log/jd_superMarket.log 2>&1
 48 04,13 * * * node /scripts/jd_sevenDay.js >> /log/jd_sevenDay.log 2>&1
-06 03,1,10 * * * node /scripts/jd_sendBeans.js >> /log/jd_sendBeans.log 2>&1
-22 02,15 * * * node /scripts/jd_travel.js >> /log/jd_travel.log 2>&1
+16 09,17 * * * node /scripts/jd_sendBeans.js >> /log/jd_sendBeans.log 2>&1
+32 09,16 * * * node /scripts/jd_txstock.js >> /log/jd_txstock.log 2>&1
 48 3,13 * * * node /scripts/jd_travel_help.js >> /log/jd_travel_help.log 2>&1
 18 1,8,13 * * * node /scripts/jd_try.js >> /log/jd_try.log 2>&1
 23 1,3,7,11,15,17,19 * * * node /scripts/jd_tyt.js >> /log/jd_tyt.log 2>&1
