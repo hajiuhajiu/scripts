@@ -1,838 +1,281 @@
-/**
- * 京东多账号-物流派件提醒
- * 派送状态会跑一次，通知一次
- *
- *
- * > 同时支持使用 NobyDa 与 domplin 脚本的京东 cookie
- * > https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
- * > https://raw.githubusercontent.com/dompling/Script/master/jd/JD_extra.js
- *
- * # Surge
- * Tasks: 京东物流派件提醒 = type=cron,cronexp=0 12 * * *,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdWuLiu.js,wake-system=true
- *
- * # QuanX
- * 0 12 * * * https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdWuLiu.js, tag=京东物流派件提醒, img-url=https://raw.githubusercontent.com/id77/QuantumultX/master/icon/jdWuLiu.png
- *
- * # Loon
- * cron "0 12 * * *" script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdWuLiu.js
- *
+/*
+京东赚赚
+活动入口：京东赚赚小程序
+长期活动，每日收益2毛左右，多号互助会较多
+已支持IOS双京东账号,Node.js支持N个京东账号
+脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
+by:小手冰凉 tg:@chianPLA
+date:2021-12-1 12:59:00
+============Quantumultx===============
+[task_local]
+# 京东赚赚
+10 0 * * * jd_jdzz.js, tag=京东赚赚, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdzz.png, enabled=true
  */
-const $ = new Env('京东物流');
-$.PAGE_MAX_KEY = 'id77_jdWuLiu_pageMax';
-$.WAYBILL_CODE_ARR_KEY = 'id77_waybillCodeArr';
-$.USER_NUM = 'id77_jdWuLiu_userNum';
-$.NEED_PHONE = 'id77_jdWuLiu_needPhone';
-$.PHONE_LIST_KEY = 'id77_jdWuLiu_phoneList';
-$.pageMax = $.getData($.PAGE_MAX_KEY) || 10;
-$.waybillCodeArr = JSON.parse($.getData($.WAYBILL_CODE_ARR_KEY) || '[]');
-$.needPhone = $.getData($.NEED_PHONE) || 'N';
-$.phoneList = JSON.parse($.getData($.PHONE_LIST_KEY) || '{}');
-$.isMuteLog = true;
-$.page = 1;
-const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
-
-let cookies = [];
-$.getData('CookieJD') && cookies.push($.getData('CookieJD'));
-$.getData('CookieJD2') && cookies.push($.getData('CookieJD2'));
-
-const extraCookies = JSON.parse($.getData('CookiesJD') || '[]').map(
-  (item) => item.cookie
-);
-cookies = Array.from(new Set([...cookies, ...extraCookies]));
+const $ = new Env('京东赚赚修复版');
+const notify = $.isNode() ? require('./sendNotify') : '';
+//Node.js用户请在jdCookie.js处填写京东ck;
+const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+//IOS等用户直接用NobyDa的jd cookie
+let cookiesArr = [], cookie = '', message = '', allMessage = '';
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
-    cookies.push(jdCookieNode[item])
+    cookiesArr.push(jdCookieNode[item])
   })
-  if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
+  if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
+  };
 } else {
-  let cookiesData = $.getdata('CookiesJD') || "[]";
-  cookiesData = jsonParse(cookiesData);
-  cookies = cookiesData.map(item => item.cookie);
-  cookies.reverse();
-  cookies.push(...[$.getdata('CookieJD2'), $.getdata('CookieJD')]);
-  cookies.reverse();
-  cookies = cookiesArr.filter(item => item !== "" && item !== null && item !== undefined);
+  cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
-
-// 清除过期缓存
-const length = $.waybillCodeArr.length;
-$.log(`💡缓存数据：${length}条`);
-
-$.userNum = $.getData($.USER_NUM) || cookies.length;
-$.log($.userNum);
-
-const total = $.pageMax * $.userNum;
-if (length > total) {
-  $.setData(
-    JSON.stringify($.waybillCodeArr.slice(length - total, length)),
-    $.WAYBILL_CODE_ARR_KEY
-  );
-}
-
-const opts = {
-  headers: {
-    Accept: `*/*`,
-    Connection: `keep-alive`,
-    'Accept-Language': 'zh-cn',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 14_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.1 Mobile/15E148 Safari/604.1`,
-  },
-};
-
+const JD_API_HOST = 'https://api.m.jd.com/client.action';
+let nowTimes = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 + 8 * 60 * 60 * 1000);
 !(async () => {
-  let userInfo, orderList, order, wuLiuDetail;
+  if (!cookiesArr[0]) {
+    $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
+    return;
+  }
+  for (let i = 0; i < cookiesArr.length; i++) {
+    if (cookiesArr[i]) {
+      cookie = cookiesArr[i];
+      $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
+      $.index = i + 1;
+      $.isLogin = true;
+      $.nickName = '';
+      message = '';
+      await TotalBean();
+      console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
+      if (!$.isLogin) {
+        $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
 
-  const blockWaybillNewStatusName = [
-    '已取消',
-    '退款成功',
-    '处理成功',
-    '已消费',
-    '充值成功',
-  ];
-
-  for (let index = 0; index < $.userNum; index++) {
-    $.cookie = cookies[index];
-    opts.headers.Cookie = $.cookie;
-
-    userInfo = await getUserInfo();
-    orderList = [];
-
-    for (let p = 1; p <= $.pageMax / 10; p++) {
-      $.page = p;
-
-      orderList = [...orderList, ...(await getShopMallOrderCourierForList())];
-
-      for (let w = 0; w < orderList.length; w++) {
-        const wuLiuDetail = orderList[w];
-        const { waybillNewStatusName, orderState } = wuLiuDetail;
-
-        $.logText = '';
-        if (w === 0) {
-          $.logText = '====================================\n';
-          $.logText += `🙆🏻‍♂️账号：${userInfo.baseInfo.nickname}\n`;
+        if ($.isNode()) {
+          await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
         }
-
-        // 忽略取消订单以及非实物订单
-        if (
-          // orderState !== 75 &&
-          // orderState !== 37 &&
-          !blockWaybillNewStatusName.includes(waybillNewStatusName)
-        ) {
-          await showMsg(userInfo, wuLiuDetail, w);
-          console.log($.logText);
-          await $.wait(777);
-        }
+        continue
       }
+      await jdWish()
+       console.log(`\n执行完毕\n`);
+	  await $.wait(9000);
+    }
+  }
+  if (allMessage) {
+    //NODE端,默认每月一日运行进行推送通知一次
+    if ($.isNode() && nowTimes.getDate() === 1 && (process.env.JDZZ_NOTIFY_CONTROL ? process.env.JDZZ_NOTIFY_CONTROL === 'false' : !!1)) {
+      await notify.sendNotify($.name, allMessage);
     }
   }
 })()
-  .catch((e) => $.logErr(e))
-  .finally(() => $.done());
+  .catch((e) => {
+    $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
+  })
+  .finally(() => {
+    $.done();
+  })
 
-function getUserInfo() {
-  return new Promise((resolve) => {
-    opts.url =
-      'https://me-api.jd.com/user_new/info/GetJDUserInfoUnion?orgFlag=JD_PinGou_New&callSource=mainorder&channel=4&isHomewhite=0&sceneval=2&g_login_type=1g_ty=ls';
-    opts.headers.Referer = `https://home.m.jd.com/`;
-
-    $.get(opts, (err, resp, data) => {
-      let userInfo;
-
-      try {
-        userInfo = JSON.parse(data).data.userInfo;
-      } catch (e) {
-        $.logErr(e, resp);
-      } finally {
-        resolve(userInfo);
-      }
-    });
-  });
-}
-
-function getShopMallOrderCourierForList() {
-  return new Promise((resolve) => {
-    const uuid = createUUID();
-    let tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    let threeMonthsAgo = new Date();
-    threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() + 1 - 3);
-    threeMonthsAgo.setDate(threeMonthsAgo.getDate() - 1);
-
-    const opts = {
-      url: `https://lop-proxy.jd.com/search/getShopMallOrderCourierForList`,
-      body: JSON.stringify([
-        {
-          pin: '$cooMrdGatewayUid$',
-          size: 10,
-          page: $.page,
-          startDate: $.time(`yyyy-MM-dd HH:mm:ss`, threeMonthsAgo),
-          endDate: $.time(`yyyy-MM-dd HH:mm:ss`, tomorrow),
-        },
-      ]),
-      headers: {
-        d_brand: `iPhone`,
-        screen: `414x896`,
-        Host: `lop-proxy.jd.com`,
-        lang: `zh_CN`,
-        'Accept-Encoding': `gzip, deflate, br`,
-        client: `WX-XCX`,
-        Connection: `keep-alive`,
-        uuid: uuid,
-        'Accept-Language': `zh-Hans-CN;q=1, en-CN;q=0.9`,
-        version: `1642590577000`,
-        build: `1642590577000`,
-        clientVersion: `1642590577000`,
-        'User-Agent': `JD4iPhone/167945 (iPhone; iOS 15.2; Scale/2.00)`,
-        Referer: `https://service.vapp.jd.com/ao0f5c7f4df74ea1b6/1/page-frame.html`,
-        sessiontraceid: uuid,
-        ClientInfo: `{"appName":"c2c","client":"m"}`,
-        'Content-Type': `application/json`,
-        sdkversion: `1.11.12`,
-        Accept: `application/json, text/plain, */*`,
-        osversion: `iOS 15.2`,
-        'X-Requested-With': `XMLHttpRequest`,
-        'LOP-DN': `logistics-mrd.jd.com`,
-        d_model: `iPhone XR<iPhone11,8>`,
-        AppParams: `{"appid":158,"ticket_type":"m"}`,
-        requestid: createUUID(),
-        Cookie: $.cookie,
-      },
-    };
-
-    $.post(opts, (err, resp, data) => {
-      let orderList;
-
-      try {
-        orderList = JSON.parse(data).data.data;
-      } catch (e) {
-        $.logErr(e, resp);
-      } finally {
-        resolve(orderList);
-      }
-    });
-  });
-}
-
-function createUUID(a = 16) {
-  const c = 'abcdefghijklmnopqrstuvwxyz0123456789';
-  let e = '';
-  for (var g = 0; g < a; g++) e += c[Math.ceil(1e8 * Math.random()) % c.length];
-  return e;
-}
-
-function showMsg(userInfo, wuLiuDetail, k) {
-  return new Promise((resolve) => {
-    const {
-      carriersName = '',
-      waybillCode = '无',
-      shopName,
-      sum,
-      orderId,
-      // 0006 派送
-      // 0008 可能代签收/快递柜/物流寄存点
-      waybillNewStatus,
-      waybillNewStatusName,
-      imgPath,
-      deliveryPromiseTime,
-      orderNode,
-    } = wuLiuDetail;
-
-    if (k > 0) {
-      $.logText += `------------------------------------\n`;
-    }
-
-    $.name = `京东物流 账号：${userInfo.baseInfo.nickname}`;
-    $.subt = ``;
-    $.desc = `📦${carriersName.replace(/包裹|大件/, '')}：${waybillCode}`;
-    $.phone =
-      $.needPhone === 'Y'
-        ? `📱手机尾号：${$.phoneList[userInfo.baseInfo.curPin] || '无'}\n`
-        : '';
-
-    // $.info = `📘包含商品：${shopName}\n📗商品数目：${sum}\n📕订单编号：${orderId}`;
-    $.info = `📘包含商品：${shopName}\n📗商品数目：${sum}`;
-    $.yg = deliveryPromiseTime ? `⏳预估送达：${deliveryPromiseTime}\n` : '';
-    $.wl = `🚚最新物流：${orderNode}`;
-    $.imgPath = imgPath;
-    $.state = `🚥当前状态：${
-      waybillNewStatus === '0008'
-        ? '🟢'
-        : waybillNewStatus === '0006'
-        ? '🟡'
-        : '🔴'
-    }${waybillNewStatusName}\n`;
-
-    $.logText +=
-      $.subt +
-      '\n' +
-      $.desc +
-      '\n' +
-      $.phone +
-      $.info +
-      '\n' +
-      $.yg +
-      $.wl +
-      '\n' +
-      $.state;
-    // 已通知过的快递，跳过通知
-    if ($.waybillCodeArr.includes(waybillCode)) {
-      return resolve();
-    }
-
-    if (waybillNewStatus !== '0006' && waybillNewStatus !== '0008') {
-      return resolve();
-    }
-
-    // 缓存 0008 状态，只通知一次
-    if (waybillNewStatus === '0008') {
-      $.waybillCodeArr.push(waybillCode);
-
-      $.setData(JSON.stringify($.waybillCodeArr), $.WAYBILL_CODE_ARR_KEY);
-    }
-
-    $.msg($.name, $.subt, $.desc + '\n' + $.wl, {
-      mediaUrl: $.imgPath,
-      'update-pasteboard': `${$.desc}\n${$.phone}${$.info}`,
-    });
-
-    resolve();
-  });
-}
-
-// https://github.com/chavyleung/scripts/blob/master/Env.js
-// prettier-ignore
-// https://github.com/chavyleung/scripts/blob/master/Env.js
-// prettier-ignore
-function Env(name, opts) {
-  class Http {
-    constructor(env) {
-      this.env = env;
-    }
-
-    send(opts, method = 'GET') {
-      opts = typeof opts === 'string' ? { url: opts } : opts;
-      let sender = this.get;
-      if (method === 'POST') {
-        sender = this.post;
-      }
-      return new Promise((resolve, reject) => {
-        sender.call(this, opts, (err, resp, body) => {
-          if (err) reject(err);
-          else resolve(resp);
-        });
-      });
-    }
-
-    get(opts) {
-      return this.send.call(this.env, opts);
-    }
-
-    post(opts) {
-      return this.send.call(this.env, opts, 'POST');
+async function jdWish() {
+  $.bean = 0
+  await getTaskList(true)
+  await getUserInfo()
+  $.nowBean = parseInt($.totalBeanNum)
+  $.nowNum = parseInt($.totalNum)
+  for (let i = 0; i < $.taskList.length; ++i) {
+    let task = $.taskList[i]
+     console.log(task);
+    if (task['taskId'] === 1 && task['status'] !== 2) {
+      console.log(`去做任务：${task.taskName}`)
+      await doTask({ "taskId": task['taskId'], "taskItem": {}, "actionType": 0, "taskToken": task['taskToken'], "mpVersion": "3.4.0" })
+    } else if (task['taskId'] !== 3 && task['status'] !== 2) {
+      console.log(`去做任务：${task.taskName}`)
+      if (task['itemId'])
+        await doTask({ "itemId": task['itemId'], "taskId": task['taskId'], "taskItem": {}, "actionType": 0, "taskToken": task['taskToken'], "mpVersion": "3.4.0" })
+      else
+        await doTask({ "taskId": task['taskId'], "taskItem": {}, "actionType": 0, "taskToken": task['taskToken'], "mpVersion": "3.4.0" })
+      await $.wait(3000)
     }
   }
-
-  return new (class {
-    constructor(name, opts = {}) {
-      this.name = name;
-      this.http = new Http(this);
-      this.data = null;
-      this.dataFile = 'box.dat';
-      this.logs = [];
-      this.isMute = false;
-      this.noLogKey = opts.noLogKey || '';
-      this.noLog = opts.noLog;
-      this.isNeedRewrite = false;
-      this.logSeparator = '\n';
-      this.startTime = new Date().getTime();
-      Object.assign(this, opts);
-      this.log('', `🔔${this.name}, 开始!`);
-    }
-
-    isNode() {
-      return 'undefined' !== typeof module && !!module.exports;
-    }
-
-    isQuanX() {
-      return 'undefined' !== typeof $task;
-    }
-
-    isSurge() {
-      return 'undefined' !== typeof $httpClient && 'undefined' === typeof $loon;
-    }
-
-    isLoon() {
-      return 'undefined' !== typeof $loon;
-    }
-
-    isShadowrocket() {
-      return 'undefined' !== typeof $rocket;
-    }
-
-    toObj(str, defaultValue = null) {
-      try {
-        return JSON.parse(str);
-      } catch {
-        return defaultValue;
-      }
-    }
-
-    toStr(obj, defaultValue = null) {
-      try {
-        return JSON.stringify(obj);
-      } catch {
-        return defaultValue;
-      }
-    }
-
-    getJson(key, defaultValue) {
-      let json = defaultValue;
-      const val = this.getData(key);
-      if (val) {
-        try {
-          json = JSON.parse(this.getData(key));
-        } catch {}
-      }
-      return json;
-    }
-
-    setJson(val, key) {
-      try {
-        return this.setData(JSON.stringify(val), key);
-      } catch {
-        return false;
-      }
-    }
-
-    getScript(url) {
-      return new Promise((resolve) => {
-        this.get({ url }, (err, resp, body) => resolve(body));
-      });
-    }
-
-    runScript(script, runOpts) {
-      return new Promise((resolve) => {
-        let httpApi = this.getData('@chavy_boxjs_userCfgs.httpApi');
-        httpApi = httpApi ? httpApi.replace(/\n/g, '').trim() : httpApi;
-        let httpApi_timeout = this.getData(
-          '@chavy_boxjs_userCfgs.httpApi_timeout'
-        );
-        httpApi_timeout = httpApi_timeout ? httpApi_timeout * 1 : 20;
-        httpApi_timeout =
-          runOpts && runOpts.timeout ? runOpts.timeout : httpApi_timeout;
-        const [key, addr] = httpApi.split('@');
-        const opts = {
-          url: `http://${addr}/v1/scripting/evaluate`,
-          body: {
-            script_text: script,
-            mock_type: 'cron',
-            timeout: httpApi_timeout,
-          },
-          headers: { 'X-Key': key, Accept: '*/*' },
-        };
-        this.post(opts, (err, resp, body) => resolve(body));
-      }).catch((e) => this.logErr(e));
-    }
-
-    loadData() {
-      if (this.isNode()) {
-        this.fs = this.fs ? this.fs : require('fs');
-        this.path = this.path ? this.path : require('path');
-        const curDirDataFilePath = this.path.resolve(this.dataFile);
-        const rootDirDataFilePath = this.path.resolve(
-          process.cwd(),
-          this.dataFile
-        );
-        const isCurDirDataFile = this.fs.existsSync(curDirDataFilePath);
-        const isRootDirDataFile =
-          !isCurDirDataFile && this.fs.existsSync(rootDirDataFilePath);
-        if (isCurDirDataFile || isRootDirDataFile) {
-          const datPath = isCurDirDataFile
-            ? curDirDataFilePath
-            : rootDirDataFilePath;
-          try {
-            return JSON.parse(this.fs.readFileSync(datPath));
-          } catch (e) {
-            return {};
-          }
-        } else return {};
-      } else return {};
-    }
-
-    writeData() {
-      if (this.isNode()) {
-        this.fs = this.fs ? this.fs : require('fs');
-        this.path = this.path ? this.path : require('path');
-        const curDirDataFilePath = this.path.resolve(this.dataFile);
-        const rootDirDataFilePath = this.path.resolve(
-          process.cwd(),
-          this.dataFile
-        );
-        const isCurDirDataFile = this.fs.existsSync(curDirDataFilePath);
-        const isRootDirDataFile =
-          !isCurDirDataFile && this.fs.existsSync(rootDirDataFilePath);
-        const jsonData = JSON.stringify(this.data);
-        if (isCurDirDataFile) {
-          this.fs.writeFileSync(curDirDataFilePath, jsonData);
-        } else if (isRootDirDataFile) {
-          this.fs.writeFileSync(rootDirDataFilePath, jsonData);
-        } else {
-          this.fs.writeFileSync(curDirDataFilePath, jsonData);
-        }
-      }
-    }
-
-    lodash_get(source, path, defaultValue = undefined) {
-      const paths = path.replace(/\[(\d+)\]/g, '.$1').split('.');
-      let result = source;
-      for (const p of paths) {
-        result = Object(result)[p];
-        if (result === undefined) {
-          return defaultValue;
-        }
-      }
-      return result;
-    }
-
-    lodash_set(obj, path, value) {
-      if (Object(obj) !== obj) return obj;
-      if (!Array.isArray(path)) path = path.toString().match(/[^.[\]]+/g) || [];
-      path
-        .slice(0, -1)
-        .reduce(
-          (a, c, i) =>
-            Object(a[c]) === a[c]
-              ? a[c]
-              : (a[c] = Math.abs(path[i + 1]) >> 0 === +path[i + 1] ? [] : {}),
-          obj
-        )[path[path.length - 1]] = value;
-      return obj;
-    }
-
-    getData(key) {
-      let val = this.getVal(key);
-      // 如果以 @
-      if (/^@/.test(key)) {
-        const [, objKey, paths] = /^@(.*?)\.(.*?)$/.exec(key);
-        const objVal = objKey ? this.getVal(objKey) : '';
-        if (objVal) {
-          try {
-            const objedVal = JSON.parse(objVal);
-            val = objedVal ? this.lodash_get(objedVal, paths, '') : val;
-          } catch (e) {
-            val = '';
-          }
-        }
-      }
-      return val;
-    }
-
-    setData(val, key) {
-      let isSuc = false;
-      if (/^@/.test(key)) {
-        const [, objKey, paths] = /^@(.*?)\.(.*?)$/.exec(key);
-        const objdat = this.getVal(objKey);
-        const objVal = objKey
-          ? objdat === 'null'
-            ? null
-            : objdat || '{}'
-          : '{}';
-        try {
-          const objedVal = JSON.parse(objVal);
-          this.lodash_set(objedVal, paths, val);
-          isSuc = this.setVal(JSON.stringify(objedVal), objKey);
-        } catch (e) {
-          const objedVal = {};
-          this.lodash_set(objedVal, paths, val);
-          isSuc = this.setVal(JSON.stringify(objedVal), objKey);
-        }
-      } else {
-        isSuc = this.setVal(val, key);
-      }
-      return isSuc;
-    }
-
-    getVal(key) {
-      if (this.isSurge() || this.isLoon()) {
-        return $persistentStore.read(key);
-      } else if (this.isQuanX()) {
-        return $prefs.valueForKey(key);
-      } else if (this.isNode()) {
-        this.data = this.loadData();
-        return this.data[key];
-      } else {
-        return (this.data && this.data[key]) || null;
-      }
-    }
-
-    setVal(val, key) {
-      if (this.isSurge() || this.isLoon()) {
-        return $persistentStore.write(val, key);
-      } else if (this.isQuanX()) {
-        return $prefs.setValueForKey(val, key);
-      } else if (this.isNode()) {
-        this.data = this.loadData();
-        this.data[key] = val;
-        this.writeData();
-        return true;
-      } else {
-        return (this.data && this.data[key]) || null;
-      }
-    }
-
-    initGotEnv(opts) {
-      this.got = this.got ? this.got : require('got');
-      this.ckTough = this.ckTough ? this.ckTough : require('tough-cookie');
-      this.ckJar = this.ckJar ? this.ckJar : new this.ckTough.CookieJar();
-      if (opts) {
-        opts.headers = opts.headers ? opts.headers : {};
-        if (undefined === opts.headers.Cookie && undefined === opts.cookieJar) {
-          opts.cookieJar = this.ckJar;
-        }
-      }
-    }
-
-    get(opts, callback = () => {}) {
-      if (opts.headers) {
-        delete opts.headers['Content-Type'];
-        delete opts.headers['Content-Length'];
-      }
-      if (this.isSurge() || this.isLoon()) {
-        if (this.isSurge() && this.isNeedRewrite) {
-          opts.headers = opts.headers || {};
-          Object.assign(opts.headers, { 'X-Surge-Skip-Scripting': false });
-        }
-        $httpClient.get(opts, (err, resp, body) => {
-          if (!err && resp) {
-            resp.body = body;
-            resp.statusCode = resp.status;
-          }
-          callback(err, resp, body);
-        });
-      } else if (this.isQuanX()) {
-        if (this.isNeedRewrite) {
-          opts.opts = opts.opts || {};
-          Object.assign(opts.opts, { hints: false });
-        }
-        $task.fetch(opts).then(
-          (resp) => {
-            const { statusCode: status, statusCode, headers, body } = resp;
-            callback(null, { status, statusCode, headers, body }, body);
-          },
-          (err) => callback(err)
-        );
-      } else if (this.isNode()) {
-        this.initGotEnv(opts);
-        this.got(opts)
-          .on('redirect', (resp, nextOpts) => {
-            try {
-              if (resp.headers['set-cookie']) {
-                const ck = resp.headers['set-cookie']
-                  .map(this.ckTough.Cookie.parse)
-                  .toString();
-                if (ck) {
-                  this.ckJar.setCookieSync(ck, null);
-                }
-                nextOpts.cookieJar = this.ckJar;
-              }
-            } catch (e) {
-              this.logErr(e);
-            }
-            // this.ckJar.setCookieSync(resp.headers['set-cookie'].map(Cookie.parse).toString())
-          })
-          .then(
-            (resp) => {
-              const { statusCode: status, statusCode, headers, body } = resp;
-              callback(null, { status, statusCode, headers, body }, body);
-            },
-            (err) => {
-              const { message: error, response: resp } = err;
-              callback(error, resp, resp && resp.body);
-            }
-          );
-      }
-    }
-
-    post(opts, callback = () => {}) {
-      const method = opts.method ? opts.method.toLocaleLowerCase() : 'post';
-      // 如果指定了请求体, 但没指定`Content-Type`, 则自动生成
-      if (opts.body && opts.headers && !opts.headers['Content-Type']) {
-        opts.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-      }
-      if (opts.headers) delete opts.headers['Content-Length'];
-      if (this.isSurge() || this.isLoon()) {
-        if (this.isSurge() && this.isNeedRewrite) {
-          opts.headers = opts.headers || {};
-          Object.assign(opts.headers, { 'X-Surge-Skip-Scripting': false });
-        }
-        $httpClient[method](opts, (err, resp, body) => {
-          if (!err && resp) {
-            resp.body = body;
-            resp.statusCode = resp.status;
-          }
-          callback(err, resp, body);
-        });
-      } else if (this.isQuanX()) {
-        opts.method = method;
-        if (this.isNeedRewrite) {
-          opts.opts = opts.opts || {};
-          Object.assign(opts.opts, { hints: false });
-        }
-        $task.fetch(opts).then(
-          (resp) => {
-            const { statusCode: status, statusCode, headers, body } = resp;
-            callback(null, { status, statusCode, headers, body }, body);
-          },
-          (err) => callback(err)
-        );
-      } else if (this.isNode()) {
-        this.initGotEnv(opts);
-        const { url, ..._opts } = opts;
-        this.got[method](url, _opts).then(
-          (resp) => {
-            const { statusCode: status, statusCode, headers, body } = resp;
-            callback(null, { status, statusCode, headers, body }, body);
-          },
-          (err) => {
-            const { message: error, response: resp } = err;
-            callback(error, resp, resp && resp.body);
-          }
-        );
-      }
-    }
-    /**
-     *
-     * 示例:$.time('yyyy-MM-dd qq HH:mm:ss.S')
-     *    :$.time('yyyyMMddHHmmssS')
-     *    y:年 M:月 d:日 q:季 H:时 m:分 s:秒 S:毫秒
-     *    其中y可选0-4位占位符、S可选0-1位占位符，其余可选0-2位占位符
-     * @param {string} fmt 格式化参数
-     * @param {number} 可选: 根据指定时间戳返回格式化日期
-     *
-     */
-    time(fmt, ts = null) {
-      const date = ts ? new Date(ts) : new Date();
-      let o = {
-        'M+': date.getMonth() + 1,
-        'd+': date.getDate(),
-        'H+': date.getHours(),
-        'm+': date.getMinutes(),
-        's+': date.getSeconds(),
-        'q+': Math.floor((date.getMonth() + 3) / 3),
-        S: date.getMilliseconds(),
-      };
-      if (/(y+)/.test(fmt))
-        fmt = fmt.replace(
-          RegExp.$1,
-          (date.getFullYear() + '').substr(4 - RegExp.$1.length)
-        );
-      for (let k in o)
-        if (new RegExp('(' + k + ')').test(fmt))
-          fmt = fmt.replace(
-            RegExp.$1,
-            RegExp.$1.length == 1
-              ? o[k]
-              : ('00' + o[k]).substr(('' + o[k]).length)
-          );
-      return fmt;
-    }
-
-    /**
-     * 系统通知
-     *
-     * > 通知参数: 同时支持 QuanX 和 Loon 两种格式, EnvJs根据运行环境自动转换, Surge 环境不支持多媒体通知
-     *
-     * 示例:
-     * $.msg(title, subt, desc, 'twitter://')
-     * $.msg(title, subt, desc, { 'open-url': 'twitter://', 'media-url': 'https://github.githubassets.com/images/modules/open_graph/github-mark.png' })
-     * $.msg(title, subt, desc, { 'open-url': 'https://bing.com', 'media-url': 'https://github.githubassets.com/images/modules/open_graph/github-mark.png' })
-     *
-     * @param {*} title 标题
-     * @param {*} subt 副标题
-     * @param {*} desc 通知详情
-     * @param {*} opts 通知参数
-     *
-     */
-    msg(title = name, subt = '', desc = '', opts) {
-      const toEnvOpts = (rawOpts) => {
-        if (!rawOpts) return rawOpts;
-        if (typeof rawOpts === 'string') {
-          if (this.isLoon()) return rawOpts;
-          else if (this.isQuanX()) return { 'open-url': rawOpts };
-          else if (this.isSurge()) return { url: rawOpts };
-          else return undefined;
-        } else if (typeof rawOpts === 'object') {
-          if (this.isLoon()) {
-            let openUrl = rawOpts.openUrl || rawOpts.url || rawOpts['open-url'];
-            let mediaUrl = rawOpts.mediaUrl || rawOpts['media-url'];
-            return { openUrl, mediaUrl };
-          } else if (this.isQuanX()) {
-            let openUrl = rawOpts['open-url'] || rawOpts.url || rawOpts.openUrl;
-            let mediaUrl = rawOpts['media-url'] || rawOpts.mediaUrl;
-            let updatePasteboard =
-              rawOpts['update-pasteboard'] || rawOpts.updatePasteboard;
-            return {
-              'open-url': openUrl,
-              'media-url': mediaUrl,
-              'update-pasteboard': updatePasteboard,
-            };
-          } else if (this.isSurge()) {
-            let openUrl = rawOpts.url || rawOpts.openUrl || rawOpts['open-url'];
-            return { url: openUrl };
-          }
-        } else {
-          return undefined;
-        }
-      };
-      if (!this.isMute) {
-        if (this.isSurge() || this.isLoon()) {
-          $notification.post(title, subt, desc, toEnvOpts(opts));
-        } else if (this.isQuanX()) {
-          $notify(title, subt, desc, toEnvOpts(opts));
-        }
-      }
-      if (!this.isMuteLog) {
-        let logs = ['', '==============📣系统通知📣=============='];
-        logs.push(title);
-        subt ? logs.push(subt) : '';
-        desc ? logs.push(desc) : '';
-        console.log(logs.join('\n'));
-        this.logs = this.logs.concat(logs);
-      }
-    }
-
-    log(...logs) {
-      if (this.noLog || (this.noLogKey && (this.getData(this.noLogKey) || 'N').toLocaleUpperCase() === 'Y')) {
-        return;
-      }
-      if (logs.length > 0) {
-        this.logs = [...this.logs, ...logs];
-      }
-      console.log(logs.join(this.logSeparator));
-    }
-
-    logErr(err, msg) {
-      const isPrintSack = !this.isSurge() && !this.isQuanX() && !this.isLoon();
-      if (!isPrintSack) {
-        this.log('', `❗️${this.name}, 错误!`, err);
-      } else {
-        this.log('', `❗️${this.name}, 错误!`, err.stack);
-      }
-    }
-
-    wait(time) {
-      return new Promise((resolve) => setTimeout(resolve, time));
-    }
-
-    done(val = {}) {
-      const endTime = new Date().getTime();
-      const costTime = (endTime - this.startTime) / 1000;
-      this.log('', `🔔${this.name}, 结束! 🕛 ${costTime} 秒`);
-      this.log();
-      if (this.isSurge() || this.isQuanX() || this.isLoon()) {
-        $done(val);
-      }
-    }
-  })(name, opts);
+  await getTaskList();
+  // await showMsg();
 }
+
+function showMsg() {
+  return new Promise(async resolve => {
+    message += `本次获得${parseInt($.totalBeanNum) - $.nowBean}京豆，${parseInt($.totalNum) - $.nowNum}金币\n`
+    message += `累计获得${$.totalBeanNum}京豆，${$.totalNum}金币\n可兑换${$.totalNum / 10000}元无门槛红包\n兑换入口:京东赚赚微信小程序->赚好礼->金币提现`
+    if (parseInt($.totalBeanNum) - $.nowBean > 0) {
+      //IOS运行获得京豆大于0通知
+      $.msg($.name, '', `京东账号${$.index} ${$.nickName}\n${message}`);
+    } else {
+      $.log(message)
+    }
+    allMessage += `京东账号${$.index} ${$.nickName}\n当前金币：${$.totalNum}个\n可兑换无门槛红包：${parseInt($.totalNum) / 10000}元\n兑换入口:京东赚赚微信小程序->赚好礼->金币提现${$.index !== cookiesArr.length ? '\n\n' : ''}`;
+    resolve();
+  })
+}
+
+
+function getUserInfo() {
+  return new Promise(resolve => {
+    $.get(taskUrl("interactIndex"), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+  })
+}
+
+function getTaskList(flag = false) {
+  return new Promise(resolve => {
+    $.get(taskUrl("interactTaskIndex", { "mpVersion": "3.4.0" }), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            $.taskList = data.data.taskDetailResList
+            $.totalNum = data.data.totalNum
+            $.totalBeanNum = data.data.totalBeanNum
+            if (flag && $.taskList.filter(item => !!item && item['taskId'] === 3) && $.taskList.filter(item => !!item && item['taskId'] === 3).length) {
+              console.log(`\n【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${$.taskList.filter(item => !!item && item['taskId'] === 3)[0]['itemId']}\n`);
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+  })
+}
+
+// 完成
+function doTask(body, func = "doInteractTask") {
+  // console.log(taskUrl("doInteractTask", body))
+  return new Promise(resolve => {
+    $.get(taskUrl(func, body), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            // console.log(data)
+            if (func === "doInteractTask") {
+              if (data.subCode === "S000") {
+                console.log(`任务完成，获得 ${data.data.taskDetailResList[0].incomeAmountConf} 金币，${data.data.taskDetailResList[0].beanNum} 京豆`)
+                $.bean += parseInt(data.data.taskDetailResList[0].beanNum)
+              } else {
+                console.log(`任务失败，错误信息：${data.message}`)
+              }
+            } else {
+              console.log(`${data.data.helpResDesc}`)
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+  })
+}
+
+function taskUrl(functionId, body = {}) {
+  return {
+    url: `${JD_API_HOST}?functionId=${functionId}&body=${escape(JSON.stringify(body))}&client=wh5&clientVersion=9.1.0`,
+    headers: {
+      'Cookie': cookie,
+      'Host': 'api.m.jd.com',
+      'Connection': 'keep-alive',
+      'Content-Type': 'application/json',
+      'Referer': 'http://wq.jd.com/wxapp/pages/hd-interaction/index/index',
+      'User-Agent': $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
+      'Accept-Language': 'zh-cn',
+      'Accept-Encoding': 'gzip, deflate, br',
+    }
+  }
+}
+
+function TotalBean() {
+  return new Promise(async resolve => {
+    const options = {
+      "url": `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
+      "headers": {
+        "Accept": "application/json,text/plain, */*",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "zh-cn",
+        "Connection": "keep-alive",
+        "Cookie": cookie,
+        "Referer": "https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2",
+        "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1")
+      }
+    }
+    $.post(options, (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (data) {
+            data = JSON.parse(data);
+            if (data['retcode'] === 13) {
+              $.isLogin = false; //cookie过期
+              return
+            }
+            if (data['retcode'] === 0) {
+              $.nickName = (data['base'] && data['base'].nickname) || $.UserName;
+            } else {
+              $.nickName = $.UserName
+            }
+          } else {
+            console.log(`京东服务器返回空数据`)
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve();
+      }
+    })
+  })
+}
+
+function safeGet(data) {
+  try {
+    if (typeof JSON.parse(data) == "object") {
+      return true;
+    }
+  } catch (e) {
+    console.log(e);
+    console.log(`京东服务器访问数据为空，请检查自身设备网络情况`);
+    return false;
+  }
+}
+
+function jsonParse(str) {
+  if (typeof str == "string") {
+    try {
+      return JSON.parse(str);
+    } catch (e) {
+      console.log(e);
+      $.msg($.name, '', '不要在BoxJS手动复制粘贴修改cookie')
+      return [];
+    }
+  }
+}
+// prettier-ignore
+function Env(t, e) { class s { constructor(t) { this.env = t } send(t, e = "GET") { t = "string" == typeof t ? { url: t } : t; let s = this.get; return "POST" === e && (s = this.post), new Promise((e, i) => { s.call(this, t, (t, s, r) => { t ? i(t) : e(s) }) }) } get(t) { return this.send.call(this.env, t) } post(t) { return this.send.call(this.env, t, "POST") } } return new class { constructor(t, e) { this.name = t, this.http = new s(this), this.data = null, this.dataFile = "box.dat", this.logs = [], this.isMute = !1, this.isNeedRewrite = !1, this.logSeparator = "\n", this.startTime = (new Date).getTime(), Object.assign(this, e), this.log("", `🔔${this.name}, 开始!`) } isNode() { return "undefined" != typeof module && !!module.exports } isQuanX() { return "undefined" != typeof $task } isSurge() { return "undefined" != typeof $httpClient && "undefined" == typeof $loon } isLoon() { return "undefined" != typeof $loon } toObj(t, e = null) { try { return JSON.parse(t) } catch { return e } } toStr(t, e = null) { try { return JSON.stringify(t) } catch { return e } } getjson(t, e) { let s = e; const i = this.getdata(t); if (i) try { s = JSON.parse(this.getdata(t)) } catch { } return s } setjson(t, e) { try { return this.setdata(JSON.stringify(t), e) } catch { return !1 } } getScript(t) { return new Promise(e => { this.get({ url: t }, (t, s, i) => e(i)) }) } runScript(t, e) { return new Promise(s => { let i = this.getdata("@chavy_boxjs_userCfgs.httpapi"); i = i ? i.replace(/\n/g, "").trim() : i; let r = this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout"); r = r ? 1 * r : 20, r = e && e.timeout ? e.timeout : r; const [o, h] = i.split("@"), n = { url: `http://${h}/v1/scripting/evaluate`, body: { script_text: t, mock_type: "cron", timeout: r }, headers: { "X-Key": o, Accept: "*/*" } }; this.post(n, (t, e, i) => s(i)) }).catch(t => this.logErr(t)) } loaddata() { if (!this.isNode()) return {}; { this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path"); const t = this.path.resolve(this.dataFile), e = this.path.resolve(process.cwd(), this.dataFile), s = this.fs.existsSync(t), i = !s && this.fs.existsSync(e); if (!s && !i) return {}; { const i = s ? t : e; try { return JSON.parse(this.fs.readFileSync(i)) } catch (t) { return {} } } } } writedata() { if (this.isNode()) { this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path"); const t = this.path.resolve(this.dataFile), e = this.path.resolve(process.cwd(), this.dataFile), s = this.fs.existsSync(t), i = !s && this.fs.existsSync(e), r = JSON.stringify(this.data); s ? this.fs.writeFileSync(t, r) : i ? this.fs.writeFileSync(e, r) : this.fs.writeFileSync(t, r) } } lodash_get(t, e, s) { const i = e.replace(/\[(\d+)\]/g, ".$1").split("."); let r = t; for (const t of i) if (r = Object(r)[t], void 0 === r) return s; return r } lodash_set(t, e, s) { return Object(t) !== t ? t : (Array.isArray(e) || (e = e.toString().match(/[^.[\]]+/g) || []), e.slice(0, -1).reduce((t, s, i) => Object(t[s]) === t[s] ? t[s] : t[s] = Math.abs(e[i + 1]) >> 0 == +e[i + 1] ? [] : {}, t)[e[e.length - 1]] = s, t) } getdata(t) { let e = this.getval(t); if (/^@/.test(t)) { const [, s, i] = /^@(.*?)\.(.*?)$/.exec(t), r = s ? this.getval(s) : ""; if (r) try { const t = JSON.parse(r); e = t ? this.lodash_get(t, i, "") : e } catch (t) { e = "" } } return e } setdata(t, e) { let s = !1; if (/^@/.test(e)) { const [, i, r] = /^@(.*?)\.(.*?)$/.exec(e), o = this.getval(i), h = i ? "null" === o ? null : o || "{}" : "{}"; try { const e = JSON.parse(h); this.lodash_set(e, r, t), s = this.setval(JSON.stringify(e), i) } catch (e) { const o = {}; this.lodash_set(o, r, t), s = this.setval(JSON.stringify(o), i) } } else s = this.setval(t, e); return s } getval(t) { return this.isSurge() || this.isLoon() ? $persistentStore.read(t) : this.isQuanX() ? $prefs.valueForKey(t) : this.isNode() ? (this.data = this.loaddata(), this.data[t]) : this.data && this.data[t] || null } setval(t, e) { return this.isSurge() || this.isLoon() ? $persistentStore.write(t, e) : this.isQuanX() ? $prefs.setValueForKey(t, e) : this.isNode() ? (this.data = this.loaddata(), this.data[e] = t, this.writedata(), !0) : this.data && this.data[e] || null } initGotEnv(t) { this.got = this.got ? this.got : require("got"), this.cktough = this.cktough ? this.cktough : require("tough-cookie"), this.ckjar = this.ckjar ? this.ckjar : new this.cktough.CookieJar, t && (t.headers = t.headers ? t.headers : {}, void 0 === t.headers.Cookie && void 0 === t.cookieJar && (t.cookieJar = this.ckjar)) } get(t, e = (() => { })) { t.headers && (delete t.headers["Content-Type"], delete t.headers["Content-Length"]), this.isSurge() || this.isLoon() ? (this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, { "X-Surge-Skip-Scripting": !1 })), $httpClient.get(t, (t, s, i) => { !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i) })) : this.isQuanX() ? (this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, { hints: !1 })), $task.fetch(t).then(t => { const { statusCode: s, statusCode: i, headers: r, body: o } = t; e(null, { status: s, statusCode: i, headers: r, body: o }, o) }, t => e(t))) : this.isNode() && (this.initGotEnv(t), this.got(t).on("redirect", (t, e) => { try { if (t.headers["set-cookie"]) { const s = t.headers["set-cookie"].map(this.cktough.Cookie.parse).toString(); s && this.ckjar.setCookieSync(s, null), e.cookieJar = this.ckjar } } catch (t) { this.logErr(t) } }).then(t => { const { statusCode: s, statusCode: i, headers: r, body: o } = t; e(null, { status: s, statusCode: i, headers: r, body: o }, o) }, t => { const { message: s, response: i } = t; e(s, i, i && i.body) })) } post(t, e = (() => { })) { if (t.body && t.headers && !t.headers["Content-Type"] && (t.headers["Content-Type"] = "application/x-www-form-urlencoded"), t.headers && delete t.headers["Content-Length"], this.isSurge() || this.isLoon()) this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, { "X-Surge-Skip-Scripting": !1 })), $httpClient.post(t, (t, s, i) => { !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i) }); else if (this.isQuanX()) t.method = "POST", this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, { hints: !1 })), $task.fetch(t).then(t => { const { statusCode: s, statusCode: i, headers: r, body: o } = t; e(null, { status: s, statusCode: i, headers: r, body: o }, o) }, t => e(t)); else if (this.isNode()) { this.initGotEnv(t); const { url: s, ...i } = t; this.got.post(s, i).then(t => { const { statusCode: s, statusCode: i, headers: r, body: o } = t; e(null, { status: s, statusCode: i, headers: r, body: o }, o) }, t => { const { message: s, response: i } = t; e(s, i, i && i.body) }) } } time(t, e = null) { const s = e ? new Date(e) : new Date; let i = { "M+": s.getMonth() + 1, "d+": s.getDate(), "H+": s.getHours(), "m+": s.getMinutes(), "s+": s.getSeconds(), "q+": Math.floor((s.getMonth() + 3) / 3), S: s.getMilliseconds() }; /(y+)/.test(t) && (t = t.replace(RegExp.$1, (s.getFullYear() + "").substr(4 - RegExp.$1.length))); for (let e in i) new RegExp("(" + e + ")").test(t) && (t = t.replace(RegExp.$1, 1 == RegExp.$1.length ? i[e] : ("00" + i[e]).substr(("" + i[e]).length))); return t } msg(e = t, s = "", i = "", r) { const o = t => { if (!t) return t; if ("string" == typeof t) return this.isLoon() ? t : this.isQuanX() ? { "open-url": t } : this.isSurge() ? { url: t } : void 0; if ("object" == typeof t) { if (this.isLoon()) { let e = t.openUrl || t.url || t["open-url"], s = t.mediaUrl || t["media-url"]; return { openUrl: e, mediaUrl: s } } if (this.isQuanX()) { let e = t["open-url"] || t.url || t.openUrl, s = t["media-url"] || t.mediaUrl; return { "open-url": e, "media-url": s } } if (this.isSurge()) { let e = t.url || t.openUrl || t["open-url"]; return { url: e } } } }; if (this.isMute || (this.isSurge() || this.isLoon() ? $notification.post(e, s, i, o(r)) : this.isQuanX() && $notify(e, s, i, o(r))), !this.isMuteLog) { let t = ["", "==============📣系统通知📣=============="]; t.push(e), s && t.push(s), i && t.push(i), console.log(t.join("\n")), this.logs = this.logs.concat(t) } } log(...t) { t.length > 0 && (this.logs = [...this.logs, ...t]), console.log(t.join(this.logSeparator)) } logErr(t, e) { const s = !this.isSurge() && !this.isQuanX() && !this.isLoon(); s ? this.log("", `❗️${this.name}, 错误!`, t.stack) : this.log("", `❗️${this.name}, 错误!`, t) } wait(t) { return new Promise(e => setTimeout(e, t)) } done(t = {}) { const e = (new Date).getTime(), s = (e - this.startTime) / 1e3; this.log("", `🔔${this.name}, 结束! 🕛 ${s} 秒`), this.log(), (this.isSurge() || this.isQuanX() || this.isLoon()) && $done(t) } }(t, e) }
