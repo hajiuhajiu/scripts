@@ -549,14 +549,14 @@ async function showMsg() {
 	if ($.todayOutcomeBean != 0) {
 		ReturnMessage += `,支${$.todayOutcomeBean}豆`;
 	}
-	ReturnMessage += `\n`;
+	ReturnMessage += ``;
 
 	ReturnMessage += `【昨日京豆】收${$.incomeBean}豆`;
 
 	if ($.expenseBean != 0) {
 		ReturnMessage += `,支${$.expenseBean}豆`;
 	}
-	ReturnMessage += `\n`;	
+	ReturnMessage += ``;	
 
 	if ($.beanCount){		
 		ReturnMessage += `【当前京豆】${$.beanCount}豆(≈${(($.beanCount-$.beanChangeXi)/ 100).toFixed(2)}元)\n`;		
@@ -885,7 +885,7 @@ async function bean() {
 	
 	decExBean =0;
 	await queryexpirejingdou();//过期京豆
-	if(decExBean && doExJxBeans=="true"){
+	if(true){
 		var jxbeans = await exchangejxbeans(decExBean);
 		if (jxbeans) {			
 			$.beanChangeXi=decExBean;
