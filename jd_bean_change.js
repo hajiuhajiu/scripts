@@ -781,7 +781,7 @@ async function showMsg() {
 		}
 	}
 	if(strGuoqi){		
-		ReturnMessage += `💸💸💸临期京豆明细💸💸💸\n`;
+		ReturnMessage += `💸💸💸临期京豆`;
 		ReturnMessage += `${strGuoqi}`;
 	}
 	ReturnMessage += `🧧🧧🧧红包明细🧧🧧🧧\n`;
