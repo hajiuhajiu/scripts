@@ -78,7 +78,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
   }
   // nowTimes = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 + 8 * 60 * 60 * 1000)
   if (new Date().getHours() >= 0) {
-    await getAuthorShareCode()
+    await getAuthorShareCode1()
     if ($.authorCode && $.authorCode.length) {
       for (let i = 0; i < cookiesArr.length; i++) {
         if (cookiesArr[i]) {
@@ -156,7 +156,6 @@ function tythelp(tytpacketId) {
           console.log(`API请求失败，请检查网路重试`)
         } else {
           data = JSON.parse(data);
-          console.log(tytpacketId);
           if (data.code == 0) {
             console.log("帮推：" + data.data.amount)
           } else
@@ -171,7 +170,7 @@ function tythelp(tytpacketId) {
   });
 }
 
-function getAuthorShareCode() {
+function getAuthorShareCode1() {
   return new Promise(resolve => {
       $.get({
           url: "https://xr2021.coding.net/p/import-kasd/d/JDbot/git/raw/master/shareCodes/tyt.json",
