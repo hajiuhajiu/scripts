@@ -65,7 +65,7 @@ if ($.isNode()) {
         } catch (e) {
             $.logErr(e)
         }
-        await $.wait(2000);
+        await $.wait(20000);
     }
     if(new Date().getHours() !== 6 && new Date().getHours() !== 18){
         //console.log('\n脚本早上9点到10点直接执行，才会执行账号内互助');
