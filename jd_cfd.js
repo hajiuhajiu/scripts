@@ -91,7 +91,7 @@ if ($.isNode()) {
       $.info = {}
       token = await getJxToken()
       await cfd();
-      await $.wait(2000);
+      await $.wait(18000);
     }
   }
   let res = await getAuthorShareCode('https://xr2021.coding.net/p/import-kasd/d/JDbot/git/raw/master/shareCodes/')
