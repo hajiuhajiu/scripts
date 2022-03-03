@@ -125,9 +125,7 @@ ENV_PATH=
 22 09,18 * * * node /scripts/jd_mall_active.js >> /log/jd_mall_active.log 2>&1
 28 15 * * * node /scripts/jd_mgold.js >> /log/jd_mgold.log 2>&1
 50 */4 * * * node /scripts/jd_mohe.js >> /log/jd_mohe.log 2>&1
-22 */6 * * * node /scripts/jd_mpdzcar_help.js >> /log/jd_mpdzcar_help.log 2>&1
-33 */6 * * * node /scripts/jd_mpdzcar.js >> /log/jd_mpdzcar.log 2>&1
-44 */6 * * * node /scripts/jd_mpdzcar_game.js >> /log/jd_mpdzcar_game.log 2>&1
+22 */6 * * * node /scripts/jd_plusreward.js >> /log/jd_plusreward.log 2>&1
 40 */2 * * * node /scripts/jd_moneyTree.js >> /log/jd_moneyTree.log 2>&1
 12 15 * * * node /scripts/jd_mofang_ex.js >> /log/jd_mofang_ex.log 2>&1
 10 7 * * * node /scripts/jd_ms.js >> /log/jd_ms.log 2>&1
