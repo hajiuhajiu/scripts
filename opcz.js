@@ -41,7 +41,8 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
     return;
   }
-  let res = await getAuthorShareCode(''), res2 = [];
+  let res = await getAuthorShareCode('https://xr2021.coding.net/p/import-kasd/d/JDbot/git/raw/master/shareCodes/jd_red.json');
+  res2 = [];
   if (!res) res = await getAuthorShareCode();
   $.authorMyShareIds = [...(res || []),...(res2 || [])];
   for (let i = 0; i < cookiesArr.length; i++) {
@@ -630,7 +631,8 @@ function getCcTaskList(functionId, body, type = '1') {
     })
   })
 }
-function getAuthorShareCode(url = "") {
+
+function getAuthorShareCode(url) {
   return new Promise(resolve => {
     const options = {
       url: `${url}?${new Date()}`, "timeout": 10000, headers: {
