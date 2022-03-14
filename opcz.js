@@ -57,7 +57,14 @@ $.activityEnd = false
 let lz_jdpin_token_cookie =''
 let activityCookie =''
 !(async () => {
-
+  if ($.isNode()) {
+    if(guaopencard+"" = "true"){
+      console.log('如需执行脚本请设置环境变量[guaopencard118]为"true"')
+    }
+    if(guaopencard+"" = "true"){
+      return
+    }
+  }
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {
       "open-url": "https://bean.m.jd.com/"
@@ -65,7 +72,7 @@ let activityCookie =''
     return;
   }
   $.activityId = "2203100041074702"
-  $.shareUuid = "76111111111111111111111"
+  $.shareUuid = "76f9a4f1df2e42fd98c05997c0c9bc7d"
   console.log(`入口:\nhttps://lzkjdz-isv.isvjcloud.com/m/1000410747/99/${$.activityId}/?helpUuid=${$.shareUuid}`)
   let shareUuidArr = [$.shareUuid,"0b040fd16d334886a60c9194ed39e156","76f9a4f1df2e42fd98c05997c0c9bc7d","d52668543e964836af3bcf9b62a908ce","6668e423b315482284cd4dd8c08e85f0","b10938a3b47c451793edbab377e83d5c","5dc7f645b7cb436fb1be649aeb346059","cb09c5068c894ecd8dd83e3a4c0e151f","5899b188f737424197406bbcfefda7a9","23aa9b317397423ebc152277aff1f5d4","2761691b20fb49cbba0b2db2ca6ffcb0","0420d21c7e164d898bb48d7ef3215ce9"]
   let s = Math.floor((Math.random()*10))
