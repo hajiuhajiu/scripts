@@ -128,6 +128,7 @@ ENV_PATH=
 22 */6 * * * node /scripts/jd_plusreward.js >> /log/jd_plusreward.log 2>&1
 40 */2 * * * node /scripts/jd_moneyTree.js >> /log/jd_moneyTree.log 2>&1
 12 15 * * * node /scripts/jd_mofang_ex.js >> /log/jd_mofang_ex.log 2>&1
+2 15 * * * node /scripts/jd_msign.js >> /log/jd_msign.log 2>&1
 10 7 * * * node /scripts/jd_ms.js >> /log/jd_ms.log 2>&1
 28 04,13 * * * node /scripts/jd_mohe.js >> /log/jd_mohe.log 2>&1
 26 02,8 * * * node /scripts/jd_nzmh.js >> /log/jd_nzmh.log 2>&1
