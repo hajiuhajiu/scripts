@@ -91,12 +91,6 @@ const activeEndTime = '2022/03/18 00:00:00+08:00';//活动结束时间
 let nowTime = new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000;
 !(async () => {
   if ($.isNode()) {
-    if(guaopencard+"" != "true"){
-      console.log('如需执行脚本请设置环境变量[guaopencard115]为"true"')
-    }
-    if(guaopencard+"" != "true"){
-      return
-    }
   }
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {
