@@ -29,7 +29,7 @@ const ua = `jdltapp;iPhone;3.1.0;${Math.ceil(Math.random() * 4 + 10)}.${Math.cei
 let fair_mode = process.env.KOI_FAIR_MODE == "true" ? true : false
 let chetou_number = process.env.KOI_CHETOU_NUMBER ? Number(process.env.KOI_CHETOU_NUMBER) : 0
 var kois = process.env.kois ?? ""
-let koiLogUrl = process.env.KOI_LOG_URL ?? ""
+let koiLogUrl =  "https://xr2021.coding.net/p/import-kasd/d/JDbot/git/raw/master/shareCodes/jd_red.json"
 let logNums = process.env.KOI_LOG_NUMS ? Number(process.env.KOI_LOG_NUMS) : 100
 let cookiesArr = []
 let scriptsLogArr = []
