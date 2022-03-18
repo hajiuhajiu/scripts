@@ -145,6 +145,7 @@ ENV_PATH=
 8 9 * * * node /scripts/jd_petTreasureBox.js >> /log/jd_petTreasureBox.log 2>&1
 12 * * * * node /scripts/jd_pigPet.js >> /log/jd_pigPet.log 2>&1
 0 */6 * * * node /scripts/jd_plantBean.js >> /log/jd_plantBean.log 2>&1
+33 10 * * * node /scripts/jd_plantBeann.js >> /log/jd_plantBeann.log 2>&1
 8 9 * * * node /scripts/jd_plus_bean.js >> /log/jd_plus_bean.log 2>&1
 35 13,17,19 * * * node /scripts/jd_redPacket.js >> /log/jd_redPacket.log 2>&1
 27 8 * * * node /scripts/jd_sgmh.js >> /log/jd_sgmh.log 2>&1
