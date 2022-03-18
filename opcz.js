@@ -118,22 +118,22 @@ async function jdPlantBean() {
       subTitle = `【京东昵称】${$.plantBeanIndexResult.data.plantUserInfo.plantNickName}`;
       message += `【上期时间】${roundList[num - 1].dateDesc.replace('上期 ', '')}\n`;
       message += `【上期成长值】${roundList[num - 1].growth}\n`;
-      await $.wait(1000);
+      await $.wait(10000);
 	  await receiveNutrients();//定时领取营养液
-	  await $.wait(2000);
+	  await $.wait(6000);
       await doTask();//做日常任务
 	  await $.wait(5000);
       // await doEgg();
       await stealFriendWater();
-	  await $.wait(2000);
+	  await $.wait(6000);
       await doCultureBean();
-	  await $.wait(1000);
+	  await $.wait(6000);
       await doGetReward();
-	  await $.wait(1000);
+	  await $.wait(6000);
       await showTaskProcess();
-	  await $.wait(1000);
+	  await $.wait(6000);
       await plantShareSupportList();
-	  await $.wait(1000);
+	  await $.wait(6000);
     } else {
       console.log(`种豆得豆-初始失败:  ${JSON.stringify($.plantBeanIndexResult)}`);
     }
