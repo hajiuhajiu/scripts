@@ -88,6 +88,7 @@ ENV_PATH=
 47 7 * * * node /scripts/jd_get_share_code.js >> /log/jd_get_share_code.log 2>&1
 33 0,12,18 * * * node /scripts/jd_gold_creator.js >> /log/jd_gold_creator.log 2>&1
 47 7,12 * * * node /scripts/jd_gold_sign.js >> /log/jd_gold_sign.log 2>&1
+27 7,12 * * * node /scripts/jd_global.js >> /log/jd_global.log 2>&1
 15 0-23/4 * * * node /scripts/jd_jxmc.js >> /log/jd_jxmc.log 2>&1
 35 1,7,11,18 * * * node /scripts/jd_joy_park_newtask.js >> /log/jd_joy_park_newtask.log 2>&1
 55 2,8,13,19 * * * node /scripts/jd_joy_park_task.js >> /log/jd_joy_park_task.log 2>&1
