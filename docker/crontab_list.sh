@@ -163,7 +163,8 @@ ENV_PATH=
 33 03,14 * * * node /scripts/jd_qqxing.js >> /log/jd_qqxingp.log 2>&1
 30 7,20 12-20 8 * node /scripts/jd_qcshj.js >> /log/jd_qcshj.log 2>&1
 48 0,12,18 * * * node /scripts/jd_speed_sign.js >> /log/jd_speed_sign.log 2>&1
-33 0,9 * * * node /scripts/jd_superBrand.js >> /log/jd_superBrand.log 2>&1
+33 0,8 * * * node /scripts/jd_superBrand.js >> /log/jd_superBrand.log 2>&1
+13 0,9 * * * node /scripts/jd_superBrandJK.js >> /log/jd_superBrandJK.log 2>&1
 01 01,8 * * * node /scripts/jd_sgmh.js >> /log/jd_sgmh.log 2>&1
 36 5,8,16,22 * * * node /scripts/jd_star.js >> /log/jd_star.js 2>&1
 22 01,9 * * * node /scripts/jd_star_shop.js >> /log/jd_star_shop.log 2>&1
