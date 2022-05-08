@@ -36,7 +36,7 @@ ENV_PATH=
 0 0 * * * node /scripts/jd_blueCoin20.js >> /log/jd_blueCoin20.log 2>&1
 7 8,12,18 * * * node /scripts/jd_bookshop.js >> /log/jd_bookshop.log 2>&1
 12 */6 * * * node /scripts/jd_cfd_loop.js >> /log/jd_cfd_loop.log 2>&1
-33 */8 * * * node /scripts/jd_cfd_pearl_ex.js >> /log/jd_cfd_pearl_ex.log 2>&1
+33 */8 * * * node /scripts/jd_cfd_help.js >> /log/jd_cfd_help.log 2>&1
 50 05 * * * node /scripts/jd_car.js >> /log/jd_car.log 2>&1
 03 0,8,12,18 * * * node /scripts/jd_carnivalcity.js >> /log/jjd_carnivalcity.log 2>&1 
 0 0 * * * node /scripts/jd_car_exchange.js >> /log/jd_car_exchange.log 2>&1
