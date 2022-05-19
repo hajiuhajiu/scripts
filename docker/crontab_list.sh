@@ -66,6 +66,7 @@ ENV_PATH=
 22 6,12,18 * * * node /scripts/jd_ddworld.js >> /log/jd_ddworld.log 2>&1
 3 3,6,18 * * * node /scripts/jd_genz.js >> /log/jd_genz.log 2>&1
 22 6,12,18 * * * node /scripts/jd_ddworld.js >> /log/jd_ddworld.log 2>&1
+32 9,18 * * * node /scripts/jd_ddq.js >> /log/jd_ddq.log 2>&1
 32 8,18 * * * node /scripts/jd_dwapp.js >> /log/jd_dwapp.log 2>&1
 32 21 * * * node /scripts/jd_exchangejxbeans.js >> /log/jd_exchangejxbeans.log 2>&1
 3 3,6,18 * * * node /scripts/jd_genz.js >> /log/jd_genz.log 2>&1
