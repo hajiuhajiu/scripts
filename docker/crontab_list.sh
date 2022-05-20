@@ -29,6 +29,7 @@ ENV_PATH=
 0 19 * * * node /scripts/jd_bean_changes.js >> /log/jd_bean_changes.log 2>&1
 33 0-23/4 * * * node /scripts/jd_bean_home.js >> /log/jd_bean_home.log 2>&1
 0 0 * * * node /scripts/jd_bean_sign.js >> /log/jd_bean_sign.log 2>&1
+04 0,8,16 * * * node /scripts/jd_618cj.js >> /log/jd_618cj.log 2>&1
 1 7,12,19 * * * node /scripts/jd_beauty.js >> /log/jd_beauty.log 2>&1
 30 * * * * node /scripts/jd_big_winner.js >> /log/jd_big_winner.log 2>&1
 0 * * * * node /scripts/jd_big_winner.js >> /log/jd_big_winner.log 2>&1
@@ -165,7 +166,7 @@ ENV_PATH=
 30 7,20 12-20 8 * node /scripts/jd_qcshj.js >> /log/jd_qcshj.log 2>&1
 48 0,12,18 * * * node /scripts/jd_speed_sign.js >> /log/jd_speed_sign.log 2>&1
 33 0,8 * * * node /scripts/jd_superBrand.js >> /log/jd_superBrand.log 2>&1
-13 0,9 * * * node /scripts/jd_superBrandJK.js >> /log/jd_superBrandJK.log 2>&1
+13 0,9,19 * * * node /scripts/jd_superBrandJK.js >> /log/jd_superBrandJK.log 2>&1
 01 01,8 * * * node /scripts/jd_sgmh.js >> /log/jd_sgmh.log 2>&1
 36 5,8,16,22 * * * node /scripts/jd_star.js >> /log/jd_star.js 2>&1
 22 01,9 * * * node /scripts/jd_star_shop.js >> /log/jd_star_shop.log 2>&1
