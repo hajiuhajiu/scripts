@@ -11,11 +11,11 @@
 请求太频繁会被黑ip
 过10分钟再执行
 
-cron:35 5 16-28 5 *
+cron:35 8 16-28 5 *
 ============Quantumultx===============
 [task_local]
 #5.15-5.28 童装童鞋盛典
-35 5 16-28 5 * jd_opencardL144.js, tag=5.15-5.28 童装童鞋盛典, enabled=true
+35 8 16-28 5 * jd_opencardL144.js, tag=5.15-5.28 童装童鞋盛典, enabled=true
 
 */
 
@@ -51,9 +51,9 @@ let activityCookie =''
     return;
   }
   $.activityId = "dz7876b126449293a9d1675c1ab4e1"
-  $.shareUuid = "b1xxxxxxxxxxxxxxxxx"
+  $.shareUuid = "xxxxxxxxxxxxxxxxxx"
   console.log(`入口:\nhttps://lzdz1-isv.isvjcloud.com/dingzhi/may/childrenWear/activity?activityId=${$.activityId}&shareUuid=${$.shareUuid}`)
-  let shareUuidArr = ["b1bxxxxxxxxxxxxxxxxxxxxxx","98xxxxxxxxxxxxxxxxxxxxxxxxx","ccxxxxxxxxxxx"]
+  let shareUuidArr = ["b1b80fe9979d4f80a5d186b9985fc054","9805a05a36b7478f9021b53dd1c11e16","cca28d27fe94435db2807ce803d2b1e5"]
   let s = Math.floor((Math.random()*3))
   let n = 0
   n = Math.floor((Math.random()*shareUuidArr.length))
@@ -185,7 +185,7 @@ async function run() {
         await takePostRequest('抽奖');
         if($.runFalag == false) break
         if(Number(count) <= 0) break
-        if(m >= 10){
+        if(m >= 1){
           console.log("抽奖太多次，多余的次数请再执行脚本")
           break
         }
@@ -206,9 +206,9 @@ async function run() {
       console.log(`后面的号都会助力:${$.shareUuid}`)
     }
     await $.wait(parseInt(Math.random() * 1000 + 5000, 10))
-    if(flag) await $.wait(parseInt(Math.random() * 1000 + 10000, 10))
+    if(flag) await $.wait(parseInt(Math.random() * 1000 + 5000, 10))
       if($.index % 3 == 0) console.log('休息半分钟，别被黑ip了\n可持续发展')
-      if($.index % 3 == 0) await $.wait(parseInt(Math.random() * 5000 + 30000, 10))
+      if($.index % 3 == 0) await $.wait(parseInt(Math.random() * 5000 + 20000, 10))
   } catch (e) {
     console.log(e)
   }
@@ -252,7 +252,7 @@ async function takePostRequest(type) {
         break;
       case 'checkOpenCard':
         url = `${domain}/dingzhi/may/childrenWear/initOpenCard`;
-        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&actorUuid=${$.actorUuid}&shareUuid=${$.shareUuid}`
+        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&shareUuid=${$.shareUuid}`
         break;
       case '报名':
         url = `${domain}/dingzhi/may/childrenWear/saveTask`;
