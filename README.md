@@ -1,3 +1,7 @@
+jd 618  auto.js  移步 https://github.com/hajiuhajiu/618autojs
+
+
+
 自用！
 # docker 一键安装：
 下载putty，进入终端，复制下面命令，按提示操作，默认回车：
