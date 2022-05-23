@@ -1,8 +1,8 @@
+  
 /*
  特务集卡
  脚本没有自动开卡，会尝试领取开卡奖励
 cron:35 10,18,20 * * *
-
 35 10,18,20 * * * jd_superBrand.js
 * */
 const $ = new Env('特务Z-II');
@@ -13,6 +13,7 @@ let UA = ``;
 $.allInvite = [];
 let useInfo = {};
 $.helpEncryptAssignmentId = '';
+$.flag = false
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
         cookiesArr.push(jdCookieNode[item])
@@ -51,6 +52,7 @@ if ($.isNode()) {
         }catch (e) {
             console.log(JSON.stringify(e));
         }
+		if ($.flag) return;
         await $.wait(1000);
     }
     if($.allInvite.length > 0 ){
@@ -85,6 +87,7 @@ async function main() {
     await takeRequest('superBrandSecondFloorMainPage');
     if(JSON.stringify($.activityInfo) === '{}'){
         console.log(`获取活动详情失败`);
+		$.flag = true
         return ;
     }
     console.log(`获取活动详情成功`);
@@ -243,7 +246,7 @@ function dealReturn(type, data) {
                 $.runFlag = false;
                 console.log(`抽奖失败`);
             }
-            console.log(JSON.stringify(data));
+            //console.log(JSON.stringify(data));
             break;
 
         case 'help':
