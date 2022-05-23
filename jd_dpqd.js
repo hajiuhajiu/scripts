@@ -58,7 +58,6 @@ const token = [
   "9F64084BD36FE0EBCDE1EDC956656501",
   "7516691B34E89137D3C911BBF7D86ACD"
 ]
-
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
