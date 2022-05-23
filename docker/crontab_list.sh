@@ -78,7 +78,7 @@ ENV_PATH=
 51 10 * * * node /scripts/jd_family.js >> /log/jd_family.log 2>&1
 5 6-18/6 * * * node /scripts/jd_fruit.js >> /log/jd_fruit.log 2>&1
 15 8,14 * * * node /scripts/jd_fanli.js >> /log/jd_fanli.js 2>&1
-15 3,12 * * * node /scripts/jd_festival.js >> /log/jd_festival.js 2>&1
+05 0,1 * * * node /scripts/jd_fan.js >> /log/jd_fan.js 2>&1
 38 2 * * * node /scripts/jd_getFanslove.js >> /log/jd_getFanslove.log 2>&1
 46 0,9,18,23 * * * node /scripts/jd_global.js >> /log/jd_global.js 2>&1
 13 1,7,22 * * * node /scripts/jd_health.js >> /log/jd_health.log 2>&1
