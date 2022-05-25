@@ -26,7 +26,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
 let inviteCodes = [
 
 ]
-$.shareCodesArr = [];
+$.shareCodesArr = [ZXASTT0205KkcPUtgghSRdWSyzY5_FjRWn6S7zB55awQ,ZXASTT0225KkcRRYfo1bTdBigxfMCIAFjRWn6S7zB55awQ,ZXASTT0195qwpGVtBpA6OZRjzl_QFjRWn6S7zB55awQ,ZXASTT0205KkcO0FEqieQe2SBxopXFjRWn6S7zB55awQ,ZXASTT0205KkcKElYtQKtX2Gh96J4FjRWn6S7zB55awQ];
 
 !(async() => {
     if (!cookiesArr[0]) {
