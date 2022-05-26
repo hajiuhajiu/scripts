@@ -17,7 +17,7 @@ let appid = '50074'
 var timestamp = Math.round(new Date().getTime()).toString();
 $.curlCmd = ""
 const h = (new Date()).getHours()
-const helpFlag = h >= 0 && h < 12
+const helpFlag = h >= 4 && h < 12
 const puzzleFlag = h >= 1 && h < 18
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
@@ -136,7 +136,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
             console.log(`${groupName}人数：${groupNum}，正在去加入他的队伍...`)
             await joinTeam(groupJoinInviteId)
             teamLeaderArr[teamPlayerAutoTeam[$.UserName]].groupNum += 1
-            await $.wait(12000)
+            await $.wait(2000)
         }
     }
 })()
