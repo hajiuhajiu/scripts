@@ -173,6 +173,7 @@ ENV_PATH=
 48 04,13 * * * node /scripts/jd_sevenDay.js >> /log/jd_sevenDay.log 2>&1
 32 09,16 * * * node /scripts/jd_txstock.js >> /log/jd_txstock.log 2>&1
 18 1,8,13 * * * node /scripts/jd_try.js >> /log/jd_try.log 2>&1
+38 17 * * * node /scripts/jd_try_notify.js >> /log/jd_try_notify.log 2>&1
 23 1,3,7,11,15,17,19 * * * node /scripts/jd_tyt.js >> /log/jd_tyt.log 2>&1
 10 0,10 * * * node /scripts/jd_twz-star.js >> /log/jd_twz-star.log 2>&1
 38 17 * * * node /scripts/jd_unbind.js >> /log/jd_unbind.log 2>&1
