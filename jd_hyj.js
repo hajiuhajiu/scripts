@@ -17,8 +17,8 @@ let appid = '50074'
 var timestamp = Math.round(new Date().getTime()).toString();
 $.curlCmd = ""
 const h = (new Date()).getHours()
-const helpFlag = h >= 4 && h < 12
-const puzzleFlag = h >= 1 && h < 18
+const helpFlag = h >= 5 && h < 23
+const puzzleFlag = h >= 8 && h < 18
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
         cookiesArr.push(jdCookieNode[item])
@@ -106,7 +106,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
         $.joyytoken = s.joyytoken
         $.blog_joyytoken = s.blog_joyytoken
         $.secretp = s.secretp
-        //if (helpFlag) {
+        if (helpFlag) {
             $.newHelpCodeArr = [...helpCodeArr]
             for (let i = 0, codeLen = helpCodeArr.length; i < codeLen; i++) {
                 const helpCode = helpCodeArr[i]
@@ -128,7 +128,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
                 }
             }
             helpCodeArr = [...$.newHelpCodeArr]
-        //}
+        }
         // $.joyytoken = ""
         // cookie = cookie.replace(/joyytoken=\S+?;/, "joyytoken=;") 
         if (teamPlayerAutoTeam.hasOwnProperty($.UserName)) {
