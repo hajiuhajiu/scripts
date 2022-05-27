@@ -29,7 +29,7 @@ ENV_PATH=
 0 19 * * * node /scripts/jd_bean_changes.js >> /log/jd_bean_changes.log 2>&1
 08 01,8 * * * node /scripts/jd_618jk.js >> /log/jd_618jk.log 2>&1
 #01 01  * * * node /scripts/jd_hyj.js >> /log/jd_hyj.log 2>&1
-02 01,9,10,14  * * * node /scripts/jd_hyjn1.js >> /log/jd_hyjn1.log 2>&1
+13 0-23/2 * * * node /scripts/jd_19e.js >> /log/jd_19e.log 2>&1
 33 0-23/4 * * * node /scripts/jd_bean_home.js >> /log/jd_bean_home.log 2>&1
 0 0 * * * node /scripts/jd_bean_sign.js >> /log/jd_bean_sign.log 2>&1
 04 0,8,16 * * * node /scripts/jd_618cj.js >> /log/jd_618cj.log 2>&1
