@@ -17,7 +17,7 @@ let appid = '50074'
 var timestamp = Math.round(new Date().getTime()).toString();
 $.curlCmd = ""
 const h = (new Date()).getHours()
-const helpFlag = h >= 14 && h < 12
+const helpFlag = h >= 15 && h < 23
 const puzzleFlag = h >= 8 && h < 18
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
