@@ -128,7 +128,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
                 }
             }
             helpCodeArr = [...$.newHelpCodeArr]
-        //}
+        }
         // $.joyytoken = ""
         // cookie = cookie.replace(/joyytoken=\S+?;/, "joyytoken=;") 
         if (teamPlayerAutoTeam.hasOwnProperty($.UserName)) {
