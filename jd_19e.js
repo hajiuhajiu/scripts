@@ -18,7 +18,7 @@ var timestamp = Math.round(new Date().getTime()).toString();
 $.curlCmd = ""
 const h = (new Date()).getHours()
 const helpFlag = h >= 15 && h < 23
-const puzzleFlag = h >= 8 && h < 18
+const puzzleFlag = h >= 14 && h < 18
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
         cookiesArr.push(jdCookieNode[item])
