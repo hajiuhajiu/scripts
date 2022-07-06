@@ -1,7 +1,5 @@
 /*
- * 2022-05-27 修复优化版  By https://github.com/6dylan6/jdpro/
  * 如需运行请自行添加环境变量：JD_TRY，值填 true 即可运行
- * X1a0He留
  * 脚本是否耗时只看args_xh.maxLength的大小
  * 上一作者说了每天最多300个商店，总上限为500个，jd_unsubscribe.js我已更新为批量取关版
  * 请提前取关至少250个商店确保京东试用脚本正常运行
@@ -17,9 +15,10 @@ export JD_TRY_MINSUPPLYNUM="1" #最小提供数量
 export JD_TRY_SENDNUM="10" #每隔多少账号发送一次通知，不需要可以不用设置
 export JD_TRY_UNIFIED="false" 默认采用不同试用组
 cron "4 1-22/8 * * *" jd_try.js, tag:京东试用
-
+@LingFeng
+https://t.me/LingFeng0918
  */
-const $ = new Env('京东试用')
+const $ = new Env('京东试用-凌枫自用')
 const URL = 'https://api.m.jd.com/client.action'
 let trialActivityIdList = []
 let trialActivityTitleList = []
@@ -58,7 +57,7 @@ let args_xh = {
      * 例如设置 JD_TRY_PRICE 为 30，假如现在正在遍历tab1，那tab1就会被遍历到30页，到31页就会跳到tab2，或下一个预设的tab页继续遍历到30页
      * 默认为20
      */
-    totalPages: process.env.JD_TRY_TOTALPAGES * 1 || 30,
+    totalPages: process.env.JD_TRY_TOTALPAGES * 1 || 20,
     /*
      * 由于每个账号每次获取的试用产品都不一样，所以为了保证每个账号都能试用到不同的商品，之前的脚本都不支持采用统一试用组的
      * 以下环境变量是用于指定是否采用统一试用组的
@@ -85,7 +84,7 @@ let args_xh = {
      * 可设置环境变量：JD_TRY_TABID，用@进行分隔
      * 默认为 1 到 10
      * */
-    tabId: process.env.JD_TRY_TABID && process.env.JD_TRY_TABID.split('@').map(Number) || [1, 104, 3, 4, 5, 6, 7, 8, 9, 10],
+    tabId: process.env.JD_TRY_TABID && process.env.JD_TRY_TABID.split('@').map(Number) || [104, 3, 4, 5, 6, 7, 8, 9, 10],
     /*
      * 试用商品标题过滤，黑名单，当标题存在关键词时，则不加入试用组
      * 当白名单和黑名单共存时，黑名单会自动失效，优先匹配白名单，匹配完白名单后不会再匹配黑名单，望周知
@@ -144,7 +143,7 @@ let args_xh = {
      * 不打印的缺点：无法清晰知道每个商品为什么会被过滤，哪个商品被添加到了待提交试用组
      * 可设置环境变量：JD_TRY_PLOG，默认为true
      * */
-    printLog: process.env.JD_TRY_PLOG === 'false' || true,
+    printLog: process.env.JD_TRY_PLOG === 'true' || false,
     /*
      * 白名单，是否打开，如果下面为true，那么黑名单会自动失效
      * 白名单和黑名单无法共存，白名单永远优先于黑名单
@@ -166,7 +165,7 @@ let args_xh = {
 }
 //上面很重要，遇到问题请把上面注释看一遍再来问
 !(async() => {
-    await $.wait(1500)
+    await $.wait(500)
     // 如果你要运行京东试用这个脚本，麻烦你把环境变量 JD_TRY 设置为 true
     if (1) {
         await requireConfig()
@@ -209,7 +208,7 @@ let args_xh = {
                 }
                 $.isLimit = false;
                 // 获取tabList的，不知道有哪些的把这里的注释解开跑一遍就行了
-                 //await try_tabList();
+                //await try_tabList();
                 // return;
                 $.isForbidden = false
                 $.wrong = false
@@ -583,7 +582,7 @@ function taskurl_xh(appid, functionId, body = JSON.stringify({})) {
     return {
         "url": `${URL}?appid=${appid}&functionId=${functionId}&clientVersion=10.3.4&client=wh5&body=${encodeURIComponent(body)}`,
         'headers': {
-            'Cookie': `${$.cookie} __jda=1.1.1.1.1.1;`,
+            'Cookie': `${$.cookie} __jda=1.1.1.1.1.1;__jdu=1637576642569612744541; 3AB9D23F7A4B3C9B=DUO2FQF5VOGYNYELEQZKNTEQ3SCGGZZA4SB2AKGVOJ4RXZC4ZKGNR7QTKJMXD4GG6SQ3YWGHWOTJLLHJEW3STZHR54; __jdv=122270672%7Cbaidu%7C-%7Corganic%7Cnot%20set%7C1655780320905; __jda=122270672.1637576642569612744541.1637576643.1655708287.1655780320.201; shshshfpb=v2ZDrcukDm585vgofhAAfdA==; joyya=1655780321.1655780370.66.07fyr2m; __jdb=122270672.3.1637576642569612744541|201.1655780320; mba_sid=16557803209065034994368811918.3; __jd_ref_cls=Babel_H5PageVirtual`,
             'user-agent': 'jdapp;iPhone;10.1.2;15.0;ff2caa92a8529e4788a34b3d8d4df66d9573f499;network/wifi;model/iPhone13,4;addressid/2074196292;appBuild/167802;jdSupportDarkMode/1;Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
             'Referer': 'https://prodev.m.jd.com/',
             'origin': 'https://prodev.m.jd.com/',
@@ -594,7 +593,7 @@ function taskurl_xh(appid, functionId, body = JSON.stringify({})) {
         },
     }
 
-  }
+}
 
 async function showMsg() {
     let message = ``;
@@ -680,17 +679,17 @@ function jsonParse(str) {
         }
     }
 }
- const generateRandomInteger = (min, max = 0) => {
-   if (min > max) {
-     let temp = min;
-     min = max;
-     max = temp;
-   }
-   var Range = max - min;
-   var Rand = Math.random();
-   return min + Math.round(Rand * Range);
- };
- 
+const generateRandomInteger = (min, max = 0) => {
+    if (min > max) {
+        let temp = min;
+        min = max;
+        max = temp;
+    }
+    var Range = max - min;
+    var Rand = Math.random();
+    return min + Math.round(Rand * Range);
+};
+
 function Env(name, opts) {
     class Http {
         constructor(env) {
@@ -875,7 +874,7 @@ function Env(name, opts) {
             if (!Array.isArray(path)) path = path.toString().match(/[^.[\]]+/g) || []
             path.slice(0, -1).reduce((a, c, i) => (Object(a[c]) === a[c] ? a[c] : (a[c] = Math.abs(path[i + 1]) >> 0 === +path[i + 1] ? [] : {})), obj)[
                 path[path.length - 1]
-            ] = value
+                ] = value
             return obj
         }
 
