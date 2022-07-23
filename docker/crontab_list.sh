@@ -145,7 +145,7 @@ ENV_PATH=
 02 1,12 * * * node /scripts/jd_opencard.js >> /log/jd_opencard.log 2>&1
 12 2,13 * * * node /scripts/jd_orderlist.js >> /log/jd_orderlist.log 2>&1
 22 3,15 * * * node /scripts/jd_opencard1.js >> /log/jd_opencard1.log 2>&1
-32 4,16 * * * node /scripts/jd_opencard2.js >> /log/jd_opencard2.log 2>&1
+12 4,16 * * * node /scripts/jd_opencard2.js >> /log/jd_opencard2.log 2>&1
 42 6,17 * * * node /scripts/jd_opencard3.js >> /log/jd_opencard3.log 2>&1
 48 10,18 * * * node /scripts/jd_opencard4.js >> /log/jd_opencard4.log 2>&1
 5 6-18/6 * * * node /scripts/jd_pet.js >> /log/jd_pet.log 2>&1
