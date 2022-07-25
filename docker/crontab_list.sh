@@ -170,7 +170,8 @@ ENV_PATH=
 33 0,8 * * * node /scripts/jd_superBrand.js >> /log/jd_superBrand.log 2>&1
 13 0,9,19 * * * node /scripts/jd_superBrandJK.js >> /log/jd_superBrandJK.log 2>&1
 01 01,8 * * * node /scripts/jd_sgmh.js >> /log/jd_sgmh.log 2>&1
-36 5,8,16,22 * * * node /scripts/jd_star.js >> /log/jd_star.js 2>&1
+06 01,8 * * * node /scripts/jd_shangou.js >> /log/jd_shangou.log 2>&1
+36 5,8,16,22 * * * nod01 01,8 * * * node /scripts/jd_sgmh.js >> /log/jd_sgmh.log 2>&1e /scripts/jd_star.js >> /log/jd_star.js 2>&1
 22 01,9 * * * node /scripts/jd_star_shop.js >> /log/jd_star_shop.log 2>&1
 18 6,9,15,17 * * * node /scripts/jd_superBrand1.js >> log/jd_superBrand1.log 2>&1
 11 */3 * * * node /scripts/jd_superMarket.js >> /log/jd_superMarket.log 2>&1
