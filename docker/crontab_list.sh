@@ -137,7 +137,6 @@ ENV_PATH=
 28 04,13 * * * node /scripts/jd_mohe.js >> /log/jd_mohe.log 2>&1
 26 02,8 * * * node /scripts/jd_nzmh.js >> /log/jd_nzmh.log 2>&1
 36 02,8 * * * node /scripts/jd_nh_sign.js >> /log/jd_nh_sign.log 2>&1
-26 0,9,18,23 * * * node /scripts/jd_nnfls.js >> /log/jd_nnfls.js 2>&1
 5 1,10 * * * node /scripts/jd_necklace.js >> /log/jd_necklace.log 2>&1
 02 1,12 * * * node /scripts/jd_opencard.js >> /log/jd_opencard.log 2>&1
 12 2,13 * * * node /scripts/jd_orderlist.js >> /log/jd_orderlist.log 2>&1
@@ -150,6 +149,7 @@ ENV_PATH=
 12 * * * * node /scripts/jd_pigPet.js >> /log/jd_pigPet.log 2>&1
 0 */6 * * * node /scripts/jd_plantBean.js >> /log/jd_plantBean.log 2>&1
 33 11 * * * node /scripts/jd_plantBeann.js >> /log/jd_plantBeann.log 2>&1
+26 9,18,21,20 * * * node /scripts/jd_plantBeanh.js >> /log/jd_plantBeanh.js 2>&1
 8 9 * * * node /scripts/jd_plus_bean.js >> /log/jd_plus_bean.log 2>&1
 35 13,17,19 * * * node /scripts/jd_redPacket.js >> /log/jd_redPacket.log 2>&1
 27 8 * * * node /scripts/jd_sgmh.js >> /log/jd_sgmh.log 2>&1
