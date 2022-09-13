@@ -30,7 +30,7 @@ ENV_PATH=
 #01 01,8  * * * node /scripts/jd_cleancart.js >> /log/jd_cleancart.log 2>&1
 33 0-23/4 * * * node /scripts/jd_bean_home.js >> /log/jd_bean_home.log 2>&1
 0 0 * * * node /scripts/jd_bean_sign.js >> /log/jd_bean_sign.log 2>&1
-04 0,8,16 * * * node /scripts/jd_618cj.js >> /log/jd_618cj.log 2>&1
+15 5-22/4 * * * node /scripts/jd_fruit_task.js >> /log/jd_fruit_task.log 2>&1
 1 7,12,19 * * * node /scripts/jd_beauty.js >> /log/jd_beauty.log 2>&1
 1 00,8 * * * node /scripts/jd_tanwei.js >> /log/jd_tanwei.log 2>&1
 7 8,12,18 * * * node /scripts/jd_bookshop.js >> /log/jd_bookshop.log 2>&1
