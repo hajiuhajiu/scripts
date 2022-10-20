@@ -1,10 +1,3 @@
-/*
-
-建议手动先点开一次
-33 0,6-23/3 * * * jd_19E_help.js
-
-*/
-
 const CryptoJS = require("crypto-js");
 const $ = new Env('热爱奇旅互助版-部分加密');
 const notify = $.isNode() ? require('./sendNotify') : '';
