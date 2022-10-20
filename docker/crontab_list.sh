@@ -34,6 +34,7 @@ ENV_PATH=
 1 7,12,19 * * * node /scripts/jd_beauty.js >> /log/jd_beauty.log 2>&1
 1 00,8 * * * node /scripts/jd_tanwei.js >> /log/jd_tanwei.log 2>&1
 7 8,12,18 * * * node /scripts/jd_bookshop.js >> /log/jd_bookshop.log 2>&1
+7 8,12,18,10,14,16 * * * node /scripts/jd_hyj9.js >> /log/jd_hyj9.log 2>&1
 12 */6 * * * node /scripts/jd_cfd_loop.js >> /log/jd_cfd_loop.log 2>&1
 33 */8 * * * node /scripts/jd_cfd_help.js >> /log/jd_cfd_help.log 2>&1
 50 05 * * * node /scripts/jd_car.js >> /log/jd_car.log 2>&1
