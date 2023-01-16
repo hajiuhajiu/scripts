@@ -2,7 +2,6 @@
 特物Z
 cron:15 21 14 1 *
 15 21 14 1 * jd_superBrandz.js
-
  */
 const $ = new Env('特物Z_超级');
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -97,7 +96,7 @@ function getid(functionid, source) {
 
 function doTask1() {
     return new Promise(async (resolve) => {
-        let body = `{"source":"${$.source}","activityId":${$.actid},"encryptProjectId":"mCqqcvGW1LKeAWqJtc6NwHGXK2u","completionFlag":1,"encryptAssignmentId":"H8VttZkAwM83dpETucHznqaNGAc","assignmentType":${$.assignmentType},"actionType":0}`
+        let body = `{"source":"${$.source}","activityId":"1012353","encryptProjectId":"mCqqcvGW1LKeAWqJtc6NwHGXK2u","completionFlag":1,"encryptAssignmentId":"H8VttZkAwM83dpETucHznqaNGAc","assignmentType":${$.assignmentType},"actionType":0}`
         const options = taskPostUrl(`superBrandDoTask`, body)
         $.post(options, async (err, resp, data) => {
             try {
