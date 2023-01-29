@@ -1,8 +1,4 @@
 
-/*
-18 10,18 * * * jd_ppdt.js
- */
-
 const $ = new Env('超级品牌殿堂');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -29,6 +25,8 @@ if ($.isNode()) {
             $.index = i + 1;
             $.isLogin = true;
             $.nickName = '';
+			$.ban='';
+			$.done='';
             $.UA = require('./USER_AGENTS').UARAM();
             //await TotalBean();
             console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
@@ -42,9 +40,9 @@ if ($.isNode()) {
             await xxx7();
             await $.wait(1000);
             await xxx1();
-            if ($.ban) { console.log('风控，跳出'); continue };
+            // if ($.ban) { console.log('风控，跳出'); continue };
             await $.wait(500);
-            if ($.done) continue;
+            // if ($.done) continue;
             await xxx2();
             await $.wait(500);
             await xxx4();
