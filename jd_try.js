@@ -121,7 +121,7 @@ let args_xh = {
      * 过滤大于设定值的已申请人数，例如下面设置的10000，A商品已经有10001人申请了，则A商品不会进行申请，会被跳过
      * 可设置环境变量：JD_TRY_APPLYNUMFILTER
      * */
-    applyNumFilter: process.env.JD_TRY_APPLYNUMFILTER * 1 || 10000,
+    applyNumFilter: process.env.JD_TRY_APPLYNUMFILTER * 1 || 20000,
     /*
      * 商品试用之间和获取商品之间的间隔, 单位：毫秒(1秒=1000毫秒)
      * 可设置环境变量：JD_TRY_APPLYINTERVAL
@@ -174,7 +174,7 @@ let args_xh = {
 }
 //上面很重要，遇到问题请把上面注释看一遍再来问
 !(async () => {
-    await $.wait(500)
+    await $.wait(5000)
     // 如果你要运行京东试用这个脚本，麻烦你把环境变量 JD_TRY 设置为 true
     if (1) {
         await requireConfig()
@@ -239,8 +239,8 @@ let args_xh = {
                     }
                 }
                 if ($.isForbidden === false && $.isLimit === false) {
-                    console.log(`稍后将执行试用申请，请等待 2 秒\n`)
-                    await $.wait(2000);
+                    console.log(`稍后将执行试用申请，请等待 12 秒\n`)
+                    await $.wait(12000);
                     for (let i = 0; i < trialActivityIdList.length && $.isLimit === false; i++) {
                         if ($.isLimit) {
                             console.log("试用上限")
