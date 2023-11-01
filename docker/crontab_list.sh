@@ -117,9 +117,9 @@ ENV_PATH=
 15 4,13,20 * * * node /scripts/jd_industrial_task.js >> /log/jd_industrial_task.log 2>&1
 20 02,10 * * * node /scripts/jd_lsj.js >> /log/jd_lsj.log 2>&1
 25 5,8,13,17 * * * node /scripts/jd_jddj_bean.js >> /log/jd_jddj_bean.log 2>&1
-45 6,8,13,15 * * * node /scripts/jd_jddj_fruit.js >> /log/jd_jddj_fruit.log 2>&1
-55 7,10,13,16 * * * node /scripts/jd_jddj_fruit_collectWater.js >> /log/jd_jddj_fruit_collectWater.log 2>&1
-05 1,8,13,20 * * * node /scripts/jd_jddj_getPoints.js >> /log/jd_jddj_getPoints.log 2>&1
+45 6,8,13,15 * * * node /scripts/jd_nfarm_draw.js >> /log/jd_nfarm_draw.log 2>&1
+55 7,10,13,16 * * * node /scripts/jd_nfarm_help.js >> /log/jd_nfarm_help.log 2>&1
+05 1,8,13,20 * * * node /scripts/jd_nfarm_task.js >> /log/jd_nfarm_task.log 2>&1
 18 3,8,13,17 * * * node /scripts/jd_jddj_plantBeans.js >> /log/jd_jddj_plantBeans.log 2>&1
 23 1 * * * node /scripts/jd_kd.js >> /log/jd_kd.log 2>&1
 10-20/5 12 * * * node /scripts/jd_live.js >> /log/jd_live.log 2>&1
