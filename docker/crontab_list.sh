@@ -136,6 +136,7 @@ ENV_PATH=
 12 15 * * * node /scripts/jd_mofang_ex.js >> /log/jd_mofang_ex.log 2>&1
 2 15 * * * node /scripts/jd_msign.js >> /log/jd_msign.log 2>&1
 10 7 * * * node /scripts/jd_ms.js >> /log/jd_ms.log 2>&1
+0 20 * * * node /scripts/jd11.js >> /log/jd11.log 2>&1
 28 04,13 * * * node /scripts/jd_mohe.js >> /log/jd_mohe.log 2>&1
 26 02,8 * * * node /scripts/jd_nzmh.js >> /log/jd_nzmh.log 2>&1
 36 02,8 * * * node /scripts/jd_nh_sign.js >> /log/jd_nh_sign.log 2>&1
