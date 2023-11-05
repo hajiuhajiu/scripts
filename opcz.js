@@ -34,7 +34,7 @@ let taskFlag = true // 执行打卡任务 true=执行 false=不执行
 
 
 
-const Env=require('./utils/Env.js');
+const Env=require('./Env.js');
 const $ = new Env('1111red');
 
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
