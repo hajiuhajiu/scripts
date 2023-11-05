@@ -46,7 +46,6 @@ ENV_PATH=
 05 0,8 * * * node /scripts/jd_club_lottery.js >> /log/jd_club_lottery.log 2>&1
 05 03,14 * * * node /scripts/jd_cjhz.js >> /log/jd_cjhz.log 2>&1
 27 01,12,18 * * * node /scripts/jd_connoisseur.js >> /log/jd_connoisseur.log 2>&1
-18 * * * * node /scripts/jd_daily_egg.js >> /log/jd_daily_egg.log 2>&1
 13 1,22,23 * * * node /scripts/jd_daily_lottery.js >> /log/jd_daily_lottery.log 2>&1
 35 2 * * * node /scripts/jd_daydlt.js >> /log/jd_daydlt.log 2>&1
 18 1,10 * * * node /scripts/jd_djjl.js >> /log/jd_djjl.log 2>&1
