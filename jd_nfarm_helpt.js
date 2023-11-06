@@ -37,9 +37,9 @@ const IIiiIi = require("fs");
 let l1ilIi = false,
   l11iIi = "./function/ddfn.json",
   ll11li = IIiiIi.existsSync(l11iIi),
-  iliIlI = [],
-  lI111I = [],
-  IlilI = [];
+  iliIlI = ["ycXdOaC4uFaRXRBVcqbLLq6p9","ycXdOaC4uFaRXRBVcqbLLq6p"],
+  lI111I = ["ycXdOaC4uFaRXRBVcqbLLq6p99","ycXdOaC4uFaRXRBVcqbLLq6p"],
+  IlilI = ["ycXdOaC4uFaRXRBVcqbLLq6p999","ycXdOaC4uFaRXRBVcqbLLq6p"];
 ll11li && (console.log("检测到东东农场缓存文件dongDongFarm_ShareCache.json，载入..."), iliIlI = IIiiIi.readFileSync(l11iIi, "utf-8"), iliIlI && (iliIlI = iliIlI.toString(), iliIlI = JSON.parse(iliIlI)));
 let llIi1 = false;
 if (IIIIl1) {
