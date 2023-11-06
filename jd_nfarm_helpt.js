@@ -37,9 +37,9 @@ const IIiiIi = require("fs");
 let l1ilIi = false,
   l11iIi = "./function/ddfn.json",
   ll11li = IIiiIi.existsSync(l11iIi),
-  iliIlI = ["ycXdOaC4uFaRXRBVcqbLLq6p9","ycXdOaC4uFaRXRBVcqbLLq6p"],
-  lI111I = ["ycXdOaC4uFaRXRBVcqbLLq6p99","ycXdOaC4uFaRXRBVcqbLLq6p"],
-  IlilI = ["ycXdOaC4uFaRXRBVcqbLLq6p999","ycXdOaC4uFaRXRBVcqbLLq6p"];
+  iliIlI = [],
+  lI111I = ["ycXdOaC4uFaRXRBVcqbLLq6p","ycXdObm1unGyW2MlGrL-UNDC5TeC5qQ","ycXdObm1okqyTnEyBpHMSGvQGOn3sC4","ycXdObm1q0SMVGIvErH7fKfwy_G3gck","ycXdOaS1knGdcWESPJzXa_ptNNDSUuPf","ycXdOaS1kgnADkBQfp2reWTRth4BrfMjPA","ycXdOaS1kgjMCRZQfZ-rfBaf1ABV4e9swQ","ycXdOaawp1WNUEcII4yrKm-kM8ICfp0","ycXdOaS1kgnJXB8HL8igL_ygI4DFEJkkVg","ycXdOaawp1WNUEcII4yrLVgotkI-Mis","ycXdOaC4uFaRXRJbfMDGT19aiw","ycXdOaS1kneXVUkhPZLXWHYZB8vsAvHT","ycXdOaS1kmSfSVYEALbSeOX1wlDDQ8n9",,,,"ycXdOaC4uFaRXRBVcqbLLq6p"],
+  IlilI = [];
 ll11li && (console.log("检测到东东农场缓存文件dongDongFarm_ShareCache.json，载入..."), iliIlI = IIiiIi.readFileSync(l11iIi, "utf-8"), iliIlI && (iliIlI = iliIlI.toString(), iliIlI = JSON.parse(iliIlI)));
 let llIi1 = false;
 if (IIIIl1) {
