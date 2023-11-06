@@ -19,7 +19,7 @@ cron:45 6,16 * * *
 
 */
 
-const Env=require('./utils/Env.js');
+const Env=require('./Env.js');
 const $ = new Env('新东东农场助力')
 
 const l11iI1 = require("./jdCookie"),
