@@ -118,6 +118,7 @@ ENV_PATH=
 25 5,8,13,17 * * * node /scripts/jd_jddj_bean.js >> /log/jd_jddj_bean.log 2>&1
 45 6,8,13,15 * * * node /scripts/jd_nfarm_draw.js >> /log/jd_nfarm_draw.log 2>&1
 55 7,10,13,16 * * * node /scripts/jd_nfarm_help.js >> /log/jd_nfarm_help.log 2>&1
+55 20,21 * * * node /scripts/jd_nfarm_helpt.js >> /log/jd_nfarm_helpt.log 2>&1
 05 1,8,13,20 * * * node /scripts/jd_nfarm_task.js >> /log/jd_nfarm_task.log 2>&1
 18 3,8,13,17 * * * node /scripts/jd_jddj_plantBeans.js >> /log/jd_jddj_plantBeans.log 2>&1
 23 1 * * * node /scripts/jd_kd.js >> /log/jd_kd.log 2>&1
@@ -135,7 +136,7 @@ ENV_PATH=
 12 15 * * * node /scripts/jd_mofang_ex.js >> /log/jd_mofang_ex.log 2>&1
 2 15 * * * node /scripts/jd_msign.js >> /log/jd_msign.log 2>&1
 10 7 * * * node /scripts/jd_ms.js >> /log/jd_ms.log 2>&1
-0 20 * * * node /scripts/jd11.js >> /log/jd11.log 2>&1
+0 20 * * * node /scripts/jd_11.js >> /log/jd_11.log 2>&1
 28 04,13 * * * node /scripts/jd_mohe.js >> /log/jd_mohe.log 2>&1
 26 02,8 * * * node /scripts/jd_nzmh.js >> /log/jd_nzmh.log 2>&1
 36 02,8 * * * node /scripts/jd_nh_sign.js >> /log/jd_nh_sign.log 2>&1
