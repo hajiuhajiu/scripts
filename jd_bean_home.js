@@ -11,7 +11,7 @@ let lnrun = 0;
 const $ = new Env('领京豆升级任务')
 const I11liI1i = $.isNode() ? require("./sendNotify") : "",
   iIiI1I1i = $.isNode() ? require("./jdCookie.js") : "",
-  ii1ill1 = require("./common/h5st.js");
+  ii1ill1 = require("./function/h5st41.js");
 let llI1i1Il = [],
   lIlllIIl = "",
   i111iII1;
