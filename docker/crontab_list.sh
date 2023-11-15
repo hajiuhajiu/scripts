@@ -26,7 +26,7 @@ ENV_PATH=
 # 请保留任务名称中的前缀"jd_"，去掉后缀".js"，如果有些任务你不想运行，注释掉就好了，不要删除。否则会重新添加上。
 # 非lxk0301/jd_scripts仓库中的脚本不能以“jd_”、“jr_”、“jx_”开头。请在最后保留一个空行。
 0 10 * * * node /scripts/jd_bean_change.js >> /log/jd_bean_change.log 2>&1
-0 19 * * * node /scripts/jd_bean_changes.js >> /log/jd_bean_changes.log 2>&1
+#0 19 * * * node /scripts/jd_bean_changes.js >> /log/jd_bean_changes.log 2>&1
 #01 01,8  * * * node /scripts/jd_cleancart.js >> /log/jd_cleancart.log 2>&1
 33 0-23/4 * * * node /scripts/jd_bean_home.js >> /log/jd_bean_home.log 2>&1
 0 0 * * * node /scripts/jd_bean_sign.js >> /log/jd_bean_sign.log 2>&1
@@ -45,7 +45,6 @@ ENV_PATH=
 18 * * * * node /scripts/jd_cfd_mooncake.js >> /log/jd_cfd_mooncake.log 2>&1
 05 0,8 * * * node /scripts/jd_club_lottery.js >> /log/jd_club_lottery.log 2>&1
 05 03,14 * * * node /scripts/jd_cfdtx.js >> /log/jd_cfdtx.log 2>&1
-27 01,12,18 * * * node /scripts/jd_connoisseur.js >> /log/jd_connoisseur.log 2>&1
 13 1,22,23 * * * node /scripts/jd_daily_lottery.js >> /log/jd_daily_lottery.log 2>&1
 35 2 * * * node /scripts/jd_daydlt.js >> /log/jd_daydlt.log 2>&1
 18 1,10 * * * node /scripts/jd_djjl.js >> /log/jd_djjl.log 2>&1
@@ -58,7 +57,6 @@ ENV_PATH=
 3 0,10,13 * * * node /scripts/jd_mnyyn.js >> /log/jd_mnyyn.log 2>&1
 6 0,20 * * * node /scripts/jd_mhtask.js >> /log/jd_mhtask.log 2>&1
 12 0,6 * * * node /scripts/jd_lottery.js >> /log/jd_lottery.log 2>&1
-20 * * * * node /scripts/jd_dreamFactory.js >> /log/jd_dreamFactory.log 2>&1
 12 12,18 * * * node /scripts/jd_desire.js >> /log/jjd_desire.log 2>&1
 29 0-23/4 * * * node /scripts/jd_ddnc_farmpark.js >> /log/jd_ddnc_farmpark.log 2>&1
 39 10,14 * * * node /scripts/jd_ddworld_exchange.js >> /log/jd_ddworld_exchange.log 2>&1
@@ -171,15 +169,12 @@ ENV_PATH=
 13 0,9,19 * * * node /scripts/jd_superBrandJK.js >> /log/jd_superBrandJK.log 2>&1
 01 01,8 * * * node /scripts/jd_sgmh.js >> /log/jd_sgmh.log 2>&1
 06 01,8 * * * node /scripts/jd_shangou.js >> /log/jd_shangou.log 2>&1
-36 5,8,16,22 * * * nod01 01,8 * * * node /scripts/jd_sgmh.js >> /log/jd_sgmh.log 2>&1e /scripts/jd_star.js >> /log/jd_star.js 2>&1
 22 01,9 * * * node /scripts/jd_star_shop.js >> /log/jd_star_shop.log 2>&1
 18 6,9,15,17 * * * node /scripts/jd_superBrand1.js >> log/jd_superBrand1.log 2>&1
 00 00,10 * * * node /scripts/jd_superMarket.js >> /log/jd_superMarket.log 2>&1
 48 04,13 * * * node /scripts/jd_sevenDay.js >> /log/jd_sevenDay.log 2>&1
-32 09,16 * * * node /scripts/jd_txstock.js >> /log/jd_txstock.log 2>&1
 18 1,8,13 * * * node /scripts/jd_try.js >> /log/jd_try.log 2>&1
 38 17 * * * node /scripts/jd_try_notify.js >> /log/jd_try_notify.log 2>&1
-23 1,3,7,11,15,17,19 * * * node /scripts/jd_tyt.js >> /log/jd_tyt.log 2>&1
 10 0,10 * * * node /scripts/jd_twz-star.js >> /log/jd_twz-star.log 2>&1
 38 17 * * * node /scripts/jd_unbind.js >> /log/jd_unbind.log 2>&1
 15 0-23/4 * * * node /scripts/jd_unsubscribe.js >> /log/jd_unsubscribe.log 2>&1
@@ -194,8 +189,6 @@ ENV_PATH=
 12 01,7 * * * node /scripts/jd_zjd.js >> /log/jd_zjd.log 2>&1
 18 3,9 * * * node /scripts/jx_sign.js >> /log/jx_sign.log 2>&1
 18 4,11 * * * node /scripts/jx_sign_xd.js >> /log/jx_sign_xd.log 2>&1
-
-
 
 
 
