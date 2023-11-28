@@ -11,7 +11,7 @@ wget https://cdn.jsdelivr.net/gh/hajiuhajiu/jd-base@main/install_scripts/docker_
 ```
 安装完成后输入docker设备地址192.168.1.1:5678 用户名admin密码admin5678 添加cookie
 
-需等自动同步2-3次才能更新到最新版本，
+完成后等自动同步2-3次就能更新到最新版本，
 
 
 # 青龙拉库命令:
