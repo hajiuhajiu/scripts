@@ -129,15 +129,12 @@ ENV_PATH=
 8 9 * * * node /scripts/jd_plus_bean.js >> /log/jd_plus_bean.log 2>&1
 35 13,17,19 * * * node /scripts/jd_redPacket.js >> /log/jd_redPacket.log 2>&1
 27 8 * * * node /scripts/jd_sgmh.js >> /log/jd_sgmh.log 2>&1
-43 8,12 * * * node /scripts/jd_sddd.js >> /log/jd_split.log 2>&1
-30 8,12 * * * node /scripts/jd_split.js >> /log/jd_split.log 2>&1
 26 5 * * * node /scripts/jd_shake.js >> /log/jd_shake.log 2>&1
 10 04 * * * node /scripts/jd_shop.js >> /log/jd_shop.log 2>&1
 10 01,3 * * * node /scripts/jd_speed.js >> /log/jd_speed.log 2>&1
 40 0,8 * * * node /scripts/jd_speed_redpocke.js >> /log/jd_speed_redpocke.log 2>&1
 0 0-23 * * * node /scripts/jd_super_redrain.js >> /log/jd_super_redrain.log 2>&1
 36 0-23/4 * * * node /scripts/jd_syj.js >> /log/jd_syj.log 2>&1
-33 03,14 * * * node /scripts/jd_qqxing.js >> /log/jd_qqxingp.log 2>&1
 30 7,20 12-20 8 * node /scripts/jd_qcshj.js >> /log/jd_qcshj.log 2>&1
 48 0,12,18 * * * node /scripts/jd_speed_sign.js >> /log/jd_speed_sign.log 2>&1
 33 0,8 * * * node /scripts/jd_superBrand.js >> /log/jd_superBrand.log 2>&1
@@ -147,7 +144,6 @@ ENV_PATH=
 22 01,9 * * * node /scripts/jd_star_shop.js >> /log/jd_star_shop.log 2>&1
 18 6,9,15,17 * * * node /scripts/jd_superBrand1.js >> log/jd_superBrand1.log 2>&1
 00 00,10 * * * node /scripts/jd_superMarket.js >> /log/jd_superMarket.log 2>&1
-48 04,13 * * * node /scripts/jd_sevenDay.js >> /log/jd_sevenDay.log 2>&1
 18 1,8,13 * * * node /scripts/jd_try.js >> /log/jd_try.log 2>&1
 38 17 * * * node /scripts/jd_try_notify.js >> /log/jd_try_notify.log 2>&1
 10 0,10 * * * node /scripts/jd_twz-star.js >> /log/jd_twz-star.log 2>&1
@@ -157,13 +153,7 @@ ENV_PATH=
 22 2,8 * * * node /scripts/jd_wxFans.js >> /log/jd_wxFans.log 2>&1
 42 2,8 * * * node /scripts/jd_wxgame.js >> /log/jd_wxgame.log 2>&1
 25 2,8 * * * node /scripts/jd_wish.js >> /log/jd_wish.log 2>&1
-1 0,9 * * * node /scripts/jd_xiaomi.js >> /log/jd_xiaomi.log 2>&1
-18 6,11,17 * * * node /scripts/jd_xinruimz.js >> /log/jd_xinruimz.log 2>&1
 15 3,18 * * * node /scripts/jd_zsign.js >> /log/jd_zsign.log 2>&1
-2 01,7 * * * node /scripts/jd_zjb.js >> /log/jd_zjb.log 2>&1
-12 01,7 * * * node /scripts/jd_zjd.js >> /log/jd_zjd.log 2>&1
-18 3,9 * * * node /scripts/jx_sign.js >> /log/jx_sign.log 2>&1
-18 4,11 * * * node /scripts/jx_sign_xd.js >> /log/jx_sign_xd.log 2>&1
 
 
 
