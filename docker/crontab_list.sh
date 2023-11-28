@@ -127,15 +127,12 @@ ENV_PATH=
 33 11 * * * node /scripts/jd_plantBeann.js >> /log/jd_plantBeann.log 2>&1
 26 9,18,21,20 * * * node /scripts/jd_plantBeanh.js >> /log/jd_plantBeanh.js 2>&1
 8 9 * * * node /scripts/jd_plus_bean.js >> /log/jd_plus_bean.log 2>&1
-35 13,17,19 * * * node /scripts/jd_redPacket.js >> /log/jd_redPacket.log 2>&1
 27 8 * * * node /scripts/jd_sgmh.js >> /log/jd_sgmh.log 2>&1
 26 5 * * * node /scripts/jd_shake.js >> /log/jd_shake.log 2>&1
 10 04 * * * node /scripts/jd_shop.js >> /log/jd_shop.log 2>&1
 10 01,3 * * * node /scripts/jd_speed.js >> /log/jd_speed.log 2>&1
 40 0,8 * * * node /scripts/jd_speed_redpocke.js >> /log/jd_speed_redpocke.log 2>&1
 0 0-23 * * * node /scripts/jd_super_redrain.js >> /log/jd_super_redrain.log 2>&1
-36 0-23/4 * * * node /scripts/jd_syj.js >> /log/jd_syj.log 2>&1
-30 7,20 12-20 8 * node /scripts/jd_qcshj.js >> /log/jd_qcshj.log 2>&1
 48 0,12,18 * * * node /scripts/jd_speed_sign.js >> /log/jd_speed_sign.log 2>&1
 33 0,8 * * * node /scripts/jd_superBrand.js >> /log/jd_superBrand.log 2>&1
 13 0,9,19 * * * node /scripts/jd_superBrandJK.js >> /log/jd_superBrandJK.log 2>&1
