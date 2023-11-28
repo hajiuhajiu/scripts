@@ -26,20 +26,12 @@ ENV_PATH=
 # 请保留任务名称中的前缀"jd_"，去掉后缀".js"，如果有些任务你不想运行，注释掉就好了，不要删除。否则会重新添加上。
 # 非lxk0301/jd_scripts仓库中的脚本不能以“jd_”、“jr_”、“jx_”开头。请在最后保留一个空行。
 0 10 * * * node /scripts/jd_bean_change.js >> /log/jd_bean_change.log 2>&1
-#0 19 * * * node /scripts/jd_bean_changes.js >> /log/jd_bean_changes.log 2>&1
 #01 01,8  * * * node /scripts/jd_cleancart.js >> /log/jd_cleancart.log 2>&1
 33 0-23/4 * * * node /scripts/jd_bean_home.js >> /log/jd_bean_home.log 2>&1
 0 0 * * * node /scripts/jd_bean_sign.js >> /log/jd_bean_sign.log 2>&1
 15 5-22/4 * * * node /scripts/jd_fruit_task.js >> /log/jd_fruit_task.log 2>&1
-1 7,12,19 * * * node /scripts/jd_beauty.js >> /log/jd_beauty.log 2>&1
-1 00,8 * * * node /scripts/jd_tanwei.js >> /log/jd_tanwei.log 2>&1
-7 8,12,18 * * * node /scripts/jd_bookshop.js >> /log/jd_bookshop.log 2>&1
-7 8,12,18,10,14,16 * * * node /scripts/jd_hyj9.js >> /log/jd_hyj9.log 2>&1
 12 */6 * * * node /scripts/jd_cfd_loop.js >> /log/jd_cfd_loop.log 2>&1
-33 */8 * * * node /scripts/jd_cfd_help.js >> /log/jd_cfd_help.log 2>&1
 50 05 * * * node /scripts/jd_car.js >> /log/jd_car.log 2>&1
-27 6,18,15 * * * node /scripts/jd_cash.js >> /log/jd_cash.log 2>&1
-0 0 * * * node /scripts/jd_cash_exchange.js >> /log/jd_cash_exchange.log 2>&1
 22 0,9 * * * node /scripts/jd_ccSign.js >> /log/jd_ccSign.log 2>&1
 30 * * * * node /scripts/jd_cfd.js >> /log/jd_cfd.log 2>&1
 18 * * * * node /scripts/jd_cfd_mooncake.js >> /log/jd_cfd_mooncake.log 2>&1
@@ -52,18 +44,13 @@ ENV_PATH=
 13 10 * * * node /scripts/jd_dpqd.js >> /log/jd_dpqd.log 2>&1
 3 0 * * * node /scripts/jd_dadoudou.js >> /log/jd_dadoudou.log 2>&1
 13 1 * * * node /scripts/jd_dfw.js >> /log/jd_dfw.log 2>&1
-8 9 * * * node /scripts/jd_desire.js >> /log/jd_desire.log 2>&1
 33 9,13 * * * node /scripts/jd_dqmh.js >> /log/jd_dqmh.log 2>&1
-3 0,10,13 * * * node /scripts/jd_mnyyn.js >> /log/jd_mnyyn.log 2>&1
 6 0,20 * * * node /scripts/jd_mhtask.js >> /log/jd_mhtask.log 2>&1
 12 0,6 * * * node /scripts/jd_lottery.js >> /log/jd_lottery.log 2>&1
-12 12,18 * * * node /scripts/jd_desire.js >> /log/jjd_desire.log 2>&1
 29 0-23/4 * * * node /scripts/jd_ddnc_farmpark.js >> /log/jd_ddnc_farmpark.log 2>&1
 39 10,14 * * * node /scripts/jd_ddworld_exchange.js >> /log/jd_ddworld_exchange.log 2>&1
 33 0-23/4 * * * node /scripts/jd_ddly.js >> /log/jd_ddly.log 2>&1
-22 6,12,18 * * * node /scripts/jd_ddworld.js >> /log/jd_ddworld.log 2>&1
 3 3,6,18 * * * node /scripts/jd_genz.js >> /log/jd_genz.log 2>&1
-22 6,12,18 * * * node /scripts/jd_ddworld.js >> /log/jd_ddworld.log 2>&1
 32 9,18 * * * node /scripts/jd_ddq.js >> /log/jd_ddq.log 2>&1
 32 8,18 * * * node /scripts/jd_dwapp.js >> /log/jd_dwapp.log 2>&1
 32 21 * * * node /scripts/jd_exchangejxbeans.js >> /log/jd_exchangejxbeans.log 2>&1
@@ -81,7 +68,6 @@ ENV_PATH=
 46 0,9,18,23 * * * node /scripts/jd_global.js >> /log/jd_global.js 2>&1
 13 1,7,22 * * * node /scripts/jd_health.js >> /log/jd_health.log 2>&1
 5-45/20 * * * * node /scripts/jd_health_collect.js >> /log/jd_health_collect.log 2>&1
-0 3,9,18 * * * node /scripts/jd_jxsign.js >> /log/jd_jxsign.log 2>&1
 28 12 * * * node /scripts/jd_jrdraw.js >> /log/jd_jrdraw.log 2>&1
 25 12 * * * node /scripts/jd_jintie_wx.js >> /log/jd_jintie_wx.log 2>&1
 30 * * * * node /scripts/jd_half_redrain.js >> /log/jd_half_redrain.log 2>&1
@@ -89,28 +75,20 @@ ENV_PATH=
 33 0,12,18 * * * node /scripts/jd_gold_creator.js >> /log/jd_gold_creator.log 2>&1
 47 7,12 * * * node /scripts/jd_gold_sign.js >> /log/jd_gold_sign.log 2>&1
 27 7,12 * * * node /scripts/jd_global.js >> /log/jd_global.log 2>&1
-15 0-23/4 * * * node /scripts/jd_jxmc.js >> /log/jd_jxmc.log 2>&1
 35 1,7,11,18 * * * node /scripts/jd_joy_park_newtask.js >> /log/jd_joy_park_newtask.log 2>&1
 55 2,8,13,19 * * * node /scripts/jd_joy_park_task.js >> /log/jd_joy_park_task.log 2>&1
 26 */2 * * * node /scripts/jd_jdtj_winner.js >> /log/jd_jdtj_winner.log 2>&1
 45 8,13,19 * * * node /scripts/jd_jmf.js >> /log/jd_jmf.log 2>&1
 38 0,12,18 * * * node /scripts/jd_jxdzz.js >> /log/jd_jxdzz.log 2>&1
-22 02,15 * * * node /scripts/jd_jxmc_help.js >> /log/jd_jxmc_help.log 2>&1
 28 2 * * * node /scripts/jd_jbczy.js >> /log/jd_jbczy.log 2>&1
 30 0,1,2 * * * node /scripts/jd_jdzz.js >> /log/jd_jdzz.log 2>&1
 15 6 * * * node /scripts/jd_jintie.js >> /log/jd_jintie.log 2>&1
 15 */2 * * * node /scripts/jd_joy.js >> /log/jd_joy.log 2>&1
 15 */1 * * * node /scripts/jd_joy_feedPets.js >> /log/jd_joy_feedPets.log 2>&1
 59 23,7,11,15 * * * node /scripts/jd_joy_reward.js >> /log/jd_joy_reward.log 2>&1
-10 10-20/2 * * * node /scripts/jd_joy_run.js >> /log/jd_joy_run.log 2>&1
-11 2 * * * node /scripts/jd_joy_steal.js >> /log/jd_joy_steal.log 2>&1
-59 23,7 * * * node /scripts/jd_joy500.js >> /log/jd_joy500.log 2>&1
 1 0,11,21 * * * node /scripts/jd_jump.js >> /log/jd_jump.log 2>&1
 38 5 * * * node /scripts/jd_jxd.js >> /log/jd_jxd.log 2>&1
-8 7 * * * node /scripts/jd_jxfactory.js >> /log/jd_jxfactory.log 2>&1
-0 6,9,12,18 * * * node /scripts/jd_jxnc.js >> /log/jd_jxnc.log 2>&1
 3 4,6,11 * * * node /scripts/jd_joy_park.js >> /log/jd_joy_park.log 2>&1
-02 6,9,12,18,20 * * * node /scripts/jd_jxlhb.js >> /log/jd_jxlhb.log 2>&1
 15 4,13,20 * * * node /scripts/jd_industrial_task.js >> /log/jd_industrial_task.log 2>&1
 20 02,10 * * * node /scripts/jd_lsj.js >> /log/jd_lsj.log 2>&1
 25 5,8,13,17 * * * node /scripts/jd_jddj_bean.js >> /log/jd_jddj_bean.log 2>&1
@@ -132,9 +110,6 @@ ENV_PATH=
 22 */6 * * * node /scripts/jd_plusreward.js >> /log/jd_plusreward.log 2>&1
 40 */2 * * * node /scripts/jd_moneyTree.js >> /log/jd_moneyTree.log 2>&1
 12 15 * * * node /scripts/jd_mofang_ex.js >> /log/jd_mofang_ex.log 2>&1
-2 15 * * * node /scripts/jd_msign.js >> /log/jd_msign.log 2>&1
-10 7 * * * node /scripts/jd_ms.js >> /log/jd_ms.log 2>&1
-0 20 * * * node /scripts/jd_11.js >> /log/jd_11.log 2>&1
 28 04,13 * * * node /scripts/jd_mohe.js >> /log/jd_mohe.log 2>&1
 26 02,8 * * * node /scripts/jd_nzmh.js >> /log/jd_nzmh.log 2>&1
 36 02,8 * * * node /scripts/jd_nh_sign.js >> /log/jd_nh_sign.log 2>&1
@@ -189,10 +164,6 @@ ENV_PATH=
 12 01,7 * * * node /scripts/jd_zjd.js >> /log/jd_zjd.log 2>&1
 18 3,9 * * * node /scripts/jx_sign.js >> /log/jx_sign.log 2>&1
 18 4,11 * * * node /scripts/jx_sign_xd.js >> /log/jx_sign_xd.log 2>&1
-
-
-
-
 
 
 
