@@ -34,6 +34,7 @@ ENV_PATH=
 50 05 * * * node /scripts/jd_car.js >> /log/jd_car.log 2>&1
 22 0,9 * * * node /scripts/jd_ccSign.js >> /log/jd_ccSign.log 2>&1
 30 * * * * node /scripts/jd_cfd.js >> /log/jd_cfd.log 2>&1
+00 20 * * * node /scripts/jd_red.js >> /log/jd_red.log 2>&1
 18 * * * * node /scripts/jd_cfd_mooncake.js >> /log/jd_cfd_mooncake.log 2>&1
 05 0,8 * * * node /scripts/jd_club_lottery.js >> /log/jd_club_lottery.log 2>&1
 05 03,14 * * * node /scripts/jd_cfdtx.js >> /log/jd_cfdtx.log 2>&1
