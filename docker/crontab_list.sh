@@ -55,7 +55,6 @@ ENV_PATH=
 32 9,18 * * * node /scripts/jd_ddq.js >> /log/jd_ddq.log 2>&1
 32 8,18 * * * node /scripts/jd_dwapp.js >> /log/jd_dwapp.log 2>&1
 32 21 * * * node /scripts/jd_exchangejxbeans.js >> /log/jd_exchangejxbeans.log 2>&1
-3 3,6,18 * * * node /scripts/jd_genz.js >> /log/jd_genz.log 2>&1
 28 3,13 * * * node /scripts/jd_jddt.js >> /log/jd_jddt.log 2>&1
 52 01,9 * * * node /scripts/jd_jxg.js >> /log/jd_jxg.log 2>&1
 32 */6 * * * node /scripts/jd_fcdyj.js >> /log/jd_fcdyj.log 2>&1
