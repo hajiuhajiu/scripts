@@ -62,7 +62,6 @@ ENV_PATH=
 5-45/20 * * * * node /scripts/jd_health_collect.js >> /log/jd_health_collect.log 2>&1
 28 12 * * * node /scripts/jd_jrdraw.js >> /log/jd_jrdraw.log 2>&1
 25 12 * * * node /scripts/jd_jintie_wx.js >> /log/jd_jintie_wx.log 2>&1
-30 * * * * node /scripts/jd_half_redrain.js >> /log/jd_half_redrain.log 2>&1
 47 7 * * * node /scripts/jd_get_share_code.js >> /log/jd_get_share_code.log 2>&1
 47 7,12 * * * node /scripts/jd_gold_sign.js >> /log/jd_gold_sign.log 2>&1
 27 7,12 * * * node /scripts/jd_global.js >> /log/jd_global.log 2>&1
