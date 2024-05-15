@@ -74,7 +74,6 @@ ENV_PATH=
 30 0,1,2 * * * node /scripts/jd_jdzz.js >> /log/jd_jdzz.log 2>&1
 15 6 * * * node /scripts/jd_jintie.js >> /log/jd_jintie.log 2>&1
 15 */2 * * * node /scripts/jd_joy.js >> /log/jd_joy.log 2>&1
-15 */1 * * * node /scripts/jd_joy_feedPets.js >> /log/jd_joy_feedPets.log 2>&1
 59 23,7,11,15 * * * node /scripts/jd_joy_reward.js >> /log/jd_joy_reward.log 2>&1
 1 0,11,21 * * * node /scripts/jd_jump.js >> /log/jd_jump.log 2>&1
 38 5 * * * node /scripts/jd_jxd.js >> /log/jd_jxd.log 2>&1
