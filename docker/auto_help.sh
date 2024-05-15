@@ -103,9 +103,6 @@ autoHelp "京东种豆得豆好友互助码" "${logDir}/jd_plantBean.log" "PLANT
 #京喜工厂
 autoHelp "京喜工厂好友互助码" "${logDir}/jd_dreamFactory.log" "DREAM_FACTORY_SHARE_CODES"
 
-#东东工厂
-autoHelp "东东工厂好友互助码" "${logDir}/jd_jdfactory.log" "DDFACTORY_SHARECODES"
-
 #crazyJoy
 autoHelp "crazyJoy任务好友互助码" "${logDir}/jd_crazy_joy.log" "JDJOY_SHARECODES"
 
