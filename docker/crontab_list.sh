@@ -88,7 +88,6 @@ ENV_PATH=
 23 1 * * * node /scripts/jd_kd.js >> /log/jd_kd.log 2>&1
 10-20/5 12 * * * node /scripts/jd_live.js >> /log/jd_live.log 2>&1
 28 14 * * * node /scripts/jd_live_lottery_social.js >> /log/jd_live_lottery_social.log 2>&1
-0,30 0-23/1 * * * node /scripts/jd_live_redrain.js >> /log/jd_live_redrain.log 2>&1
 22 0,12,18 * * * node /scripts/jd_lotteryMachine.js >> /log/jd_lotteryMachine.log 2>&1
 25 1,18 * * * node /scripts/jd_lucky_egg.js >> /log/jd_lucky_egg.log 2>&1
 38 13 * * * node /scripts/jd_market_lottery.js >> /log/jd_market_lottery.log 2>&1
