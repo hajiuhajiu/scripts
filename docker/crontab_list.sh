@@ -76,7 +76,6 @@ ENV_PATH=
 1 0,11,21 * * * node /scripts/jd_jump.js >> /log/jd_jump.log 2>&1
 38 5 * * * node /scripts/jd_jxd.js >> /log/jd_jxd.log 2>&1
 3 4,6,11 * * * node /scripts/jd_joy_park.js >> /log/jd_joy_park.log 2>&1
-15 4,13,20 * * * node /scripts/jd_industrial_task.js >> /log/jd_industrial_task.log 2>&1
 20 02,10 * * * node /scripts/jd_lsj.js >> /log/jd_lsj.log 2>&1
 25 5,8,13,17 * * * node /scripts/jd_jddj_bean.js >> /log/jd_jddj_bean.log 2>&1
 45 6,8,13,15 * * * node /scripts/jd_nfarm_draw.js >> /log/jd_nfarm_draw.log 2>&1
