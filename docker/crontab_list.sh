@@ -58,7 +58,6 @@ ENV_PATH=
 18 6-23/4 * * * node /scripts/jd_fruitn.js >> /log/jd_fruitn.log 2>&1
 05 0,1 * * * node /scripts/jd_fan.js >> /log/jd_fan.js 2>&1
 13 1,7,22 * * * node /scripts/jd_health.js >> /log/jd_health.log 2>&1
-5-45/20 * * * * node /scripts/jd_health_collect.js >> /log/jd_health_collect.log 2>&1
 28 12 * * * node /scripts/jd_jrdraw.js >> /log/jd_jrdraw.log 2>&1
 25 12 * * * node /scripts/jd_jintie_wx.js >> /log/jd_jintie_wx.log 2>&1
 47 7 * * * node /scripts/jd_get_share_code.js >> /log/jd_get_share_code.log 2>&1
@@ -66,7 +65,6 @@ ENV_PATH=
 27 7,12 * * * node /scripts/jd_global.js >> /log/jd_global.log 2>&1
 35 1,7,11,18 * * * node /scripts/jd_joy_park_newtask.js >> /log/jd_joy_park_newtask.log 2>&1
 55 2,8,13,19 * * * node /scripts/jd_joy_park_task.js >> /log/jd_joy_park_task.log 2>&1
-26 */2 * * * node /scripts/jd_jdtj_winner.js >> /log/jd_jdtj_winner.log 2>&1
 45 8,13,19 * * * node /scripts/jd_jmf.js >> /log/jd_jmf.log 2>&1
 38 0,12,18 * * * node /scripts/jd_jxdzz.js >> /log/jd_jxdzz.log 2>&1
 28 2 * * * node /scripts/jd_jbczy.js >> /log/jd_jbczy.log 2>&1
@@ -84,16 +82,13 @@ ENV_PATH=
 05 1,8,13,20 * * * node /scripts/jd_nfarm_task.js >> /log/jd_nfarm_task.log 2>&1
 18 3,8,13,17 * * * node /scripts/jd_jddj_plantBeans.js >> /log/jd_jddj_plantBeans.log 2>&1
 23 1 * * * node /scripts/jd_kd.js >> /log/jd_kd.log 2>&1
-10-20/5 12 * * * node /scripts/jd_live.js >> /log/jd_live.log 2>&1
 28 14 * * * node /scripts/jd_live_lottery_social.js >> /log/jd_live_lottery_social.log 2>&1
 22 0,12,18 * * * node /scripts/jd_lotteryMachine.js >> /log/jd_lotteryMachine.log 2>&1
 25 1,18 * * * node /scripts/jd_lucky_egg.js >> /log/jd_lucky_egg.log 2>&1
 38 13 * * * node /scripts/jd_market_lottery.js >> /log/jd_market_lottery.log 2>&1
 22 09,18 * * * node /scripts/jd_mall_active.js >> /log/jd_mall_active.log 2>&1
 28 15 * * * node /scripts/jd_mgold.js >> /log/jd_mgold.log 2>&1
-50 */4 * * * node /scripts/jd_mohe.js >> /log/jd_mohe.log 2>&1
 22 */6 * * * node /scripts/jd_plusreward.js >> /log/jd_plusreward.log 2>&1
-40 */2 * * * node /scripts/jd_moneyTree.js >> /log/jd_moneyTree.log 2>&1
 12 15 * * * node /scripts/jd_mofang_ex.js >> /log/jd_mofang_ex.log 2>&1
 28 04,13 * * * node /scripts/jd_mohe.js >> /log/jd_mohe.log 2>&1
 26 02,8 * * * node /scripts/jd_nzmh.js >> /log/jd_nzmh.log 2>&1
