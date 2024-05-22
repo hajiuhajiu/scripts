@@ -65,7 +65,6 @@ ENV_PATH=
 27 7,12 * * * node /scripts/jd_global.js >> /log/jd_global.log 2>&1
 35 1,7,11,18 * * * node /scripts/jd_joy_park_newtask.js >> /log/jd_joy_park_newtask.log 2>&1
 55 2,8,13,19 * * * node /scripts/jd_joy_park_task.js >> /log/jd_joy_park_task.log 2>&1
-45 8,13,19 * * * node /scripts/jd_jmf.js >> /log/jd_jmf.log 2>&1
 38 0,12,18 * * * node /scripts/jd_jxdzz.js >> /log/jd_jxdzz.log 2>&1
 28 2 * * * node /scripts/jd_jbczy.js >> /log/jd_jbczy.log 2>&1
 30 0,1,2 * * * node /scripts/jd_jdzz.js >> /log/jd_jdzz.log 2>&1
@@ -85,7 +84,6 @@ ENV_PATH=
 28 14 * * * node /scripts/jd_live_lottery_social.js >> /log/jd_live_lottery_social.log 2>&1
 22 0,12,18 * * * node /scripts/jd_lotteryMachine.js >> /log/jd_lotteryMachine.log 2>&1
 25 1,18 * * * node /scripts/jd_lucky_egg.js >> /log/jd_lucky_egg.log 2>&1
-38 13 * * * node /scripts/jd_market_lottery.js >> /log/jd_market_lottery.log 2>&1
 22 09,18 * * * node /scripts/jd_mall_active.js >> /log/jd_mall_active.log 2>&1
 28 15 * * * node /scripts/jd_mgold.js >> /log/jd_mgold.log 2>&1
 22 */6 * * * node /scripts/jd_plusreward.js >> /log/jd_plusreward.log 2>&1
