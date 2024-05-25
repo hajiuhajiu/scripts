@@ -85,7 +85,6 @@ ENV_PATH=
 22 0,12,18 * * * node /scripts/jd_lotteryMachine.js >> /log/jd_lotteryMachine.log 2>&1
 25 1,18 * * * node /scripts/jd_lucky_egg.js >> /log/jd_lucky_egg.log 2>&1
 22 09,18 * * * node /scripts/jd_mall_active.js >> /log/jd_mall_active.log 2>&1
-28 15 * * * node /scripts/jd_mgold.js >> /log/jd_mgold.log 2>&1
 22 */6 * * * node /scripts/jd_plusreward.js >> /log/jd_plusreward.log 2>&1
 12 15 * * * node /scripts/jd_mofang_ex.js >> /log/jd_mofang_ex.log 2>&1
 28 04,13 * * * node /scripts/jd_mohe.js >> /log/jd_mohe.log 2>&1
@@ -117,14 +116,12 @@ ENV_PATH=
 01 01,8 * * * node /scripts/jd_sgmh.js >> /log/jd_sgmh.log 2>&1
 06 01,8 * * * node /scripts/jd_shangou.js >> /log/jd_shangou.log 2>&1
 22 01,9 * * * node /scripts/jd_star_shop.js >> /log/jd_star_shop.log 2>&1
-18 6,9,15,17 * * * node /scripts/jd_superBrand1.js >> log/jd_superBrand1.log 2>&1
 00 00,10 * * * node /scripts/jd_superMarket.js >> /log/jd_superMarket.log 2>&1
 18 1,8,13 * * * node /scripts/jd_try.js >> /log/jd_try.log 2>&1
 38 17 * * * node /scripts/jd_try_notify.js >> /log/jd_try_notify.log 2>&1
 10 0,10 * * * node /scripts/jd_twz-star.js >> /log/jd_twz-star.log 2>&1
 38 17 * * * node /scripts/jd_unbind.js >> /log/jd_unbind.log 2>&1
 15 0-23/4 * * * node /scripts/jd_unsubscribe.js >> /log/jd_unsubscribe.log 2>&1
-42 9,15 * * * node /scripts/jd_wishingPool.js >> /log/jd_wishingPool.log 2>&1
 22 2,8 * * * node /scripts/jd_wxFans.js >> /log/jd_wxFans.log 2>&1
 42 2,8 * * * node /scripts/jd_wxgame.js >> /log/jd_wxgame.log 2>&1
 25 2,8 * * * node /scripts/jd_wish.js >> /log/jd_wish.log 2>&1
