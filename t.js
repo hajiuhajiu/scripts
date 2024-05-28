@@ -230,7 +230,7 @@ async function I1lliI1(lIilIIl = 0) {
         break;
       }
       if (!/unionActId=\d+/.test($.url2) && !new RegExp("&d=" + lI11l11).test($.url2)) {
-        console.log("改返利url：https://u.jd.com/" + lI11l11 + " 可能不是);
+        console.log("改返利url：https://u.jd.com/" + lI11l11 + " 可能不是 ");
         $.runEnd = true;
         return;
       }
