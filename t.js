@@ -226,18 +226,18 @@ async function I1lliI1(lIilIIl = 0) {
       $.UVCookieArr[$.UserName] = $.UVCookie + "";
       await IIiiIIil();
       if (!$.url2) {
-        console.log("获取不到红包页面");
+        console.log("获取不到活动页面");
         break;
       }
       if (!/unionActId=\d+/.test($.url2) && !new RegExp("&d=" + lI11l11).test($.url2)) {
-        console.log("改返利url：https://u.jd.com/" + lI11l11 + " 可能不是红包页面");
+        console.log("改返利url：https://u.jd.com/" + lI11l11 + " 可能不是);
         $.runEnd = true;
         return;
       }
       if (!$.url2) {
-        $.url2 = "https://pro.m.jd.com/mall/active/2ZqeDAGGJtUdE4C38i2EXkXBLLNu/index.html?unionActId=31165&d=" + lI11l11 + "&cu=true&utm_source=kong&utm_medium=jingfen";
+        $.url2 = "https://pro.m.jd.com/mall/active/3Rztcv2tMwdpFqWiqaAUzBAToowC/index.html?unionActId=31177&d=" + lI11l11 + "&cu=true&utm_source=kong&utm_medium=jingfen";
       }
-      $.actId = $.url2.match(/(https:\/\/\S{3,7}[\.m]{0,}\.jd\.com)/) && $.url2.match(/mall\/active\/([^/]+)\/index\.html/)[1] || "2ZqeDAGGJtUdE4C38i2EXkXBLLNu";
+      $.actId = $.url2.match(/(https:\/\/\S{3,7}[\.m]{0,}\.jd\.com)/) && $.url2.match(/mall\/active\/([^/]+)\/index\.html/)[1] || "3Rztcv2tMwdpFqWiqaAUzBAToowC";
       $.UVCookie = i1IilIIl.getUVCookie("", "", $.url2, $.UVCookie);
       $.origin = $.url2.match(/(https:\/\/\S{3,7}[\.m]{0,}\.jd\.com)/) && $.url2.match(/(https:\/\/\S{3,7}[\.m]{0,}\.jd\.com)/)[1] || "https://pro.m.jd.com";
       $.UVCookieArr[$.UserName] = $.UVCookie + "";
