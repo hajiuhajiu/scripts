@@ -1,24 +1,6 @@
 
 /*
-1111red
-加密
-脚本锁佣建议用新的京粉号
-https://u.jd.com/xxxxxxx
-返利变量：JD_231111_RedRebateCode，若需要返利给自己，请自己修改环境变量[JD_231111_RedRebateCode]
-xxxxxxx换成自己的返利 就是链接后面那7位字母
-export JD_231111_RedRebateCode="xxxxxxx"
-每次脚本领取红包次数
-export JD_231111_RedCount="0"
-0=不限制 1=领取1次
-每个账号之间等待时间单位毫秒 默认15秒
-1000=1秒
-export JD_231111_RedTimes="15000"
-export JD_231111_Red_proxy='' 代理池URL多个请用|隔开
-返回的格式为：ip:port
-如果有账号密码的话格式为：ip:port:username:password
 export JD_231111_proxyReceiveCount='10' 使用代理领取账号大于 10 切换ip 填数字
-export JD_231111_Red_taskFlag='true' 执行打卡任务 true=执行 false=不执行 默认执行
-30 0,10,20 * * * https://raw.githubusercontent.com/smiek2121/scripts/master/gua_231111_Red.js 1111red
 */
 
 let rebateCodes = ''; // 返利变量
@@ -78,7 +60,7 @@ let i1liIII = {};
 $.getH5st_WQ_Arr = {};
 $.runArr = {};
 let l1l1i1I1 = {};
-const ililI1i1 = "2024/06/21 00:00:00+08:00";
+const ililI1i1 = "2024/06/20 00:00:00+08:00";
 let ii11I1ll = new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 + 28800000;
 $.UVCookieArr = {};
 lr = {};
@@ -145,7 +127,7 @@ lllll();
     $.setdata("", "JD_231111_Red_pin");
     return;
   }
-  console.log("当前版本：2023年10月25日 V3");
+  console.log("当前版本：V3");
   console.log("返利码：" + lI11l11.replace(/.+(.{3})/, "***$1") + "\n");
   $.shareCodeArr = {};
   $.shareCodePinArr = $.getdata("JD_231111_Red_pin") || {};
@@ -1811,7 +1793,7 @@ function IiIII1ii(iII1llll, ll1l1l1l, I1I1i11 = "") {
           h: 896,
           ow: 414,
           oh: 896,
-          url: "https://pro.m.jd.com/mall/active/2ZqeDAGGJtUdE4C38i2EXkXBLLNu/index.html?unionActId=31165&d=&s=&cu=true&utm_source=kong&utm_medium=jingfen",
+          url: "https://pro.m.jd.com/mall/active/3Rztcv2tMwdpFqWiqaAUzBAToowC/index.html?unionActId=31177&d=&s=&cu=true&utm_source=kong&utm_medium=jingfen",
           og: "https://pro.m.jd.com",
           pr: 3,
           re: "https://u.jd.com/",
@@ -1952,8 +1934,8 @@ function lllll() {
         domain: "prodev.m.jd.com",
         referrer: "https://u.jd.com/",
         location: {
-          href: "https://pro.m.jd.com/mall/active/2ZqeDAGGJtUdE4C38i2EXkXBLLNu/index.html",
-          hrefs: "https://pro.m.jd.com/mall/active/2ZqeDAGGJtUdE4C38i2EXkXBLLNu/index.html"
+          href: "https://pro.m.jd.com/mall/active/3Rztcv2tMwdpFqWiqaAUzBAToowC/index.html",
+          hrefs: "https://pro.m.jd.com/mall/active/3Rztcv2tMwdpFqWiqaAUzBAToowC/index.html"
         }
       };
       this.navigator = {
