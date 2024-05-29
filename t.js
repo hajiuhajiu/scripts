@@ -1,6 +1,6 @@
 
 /*
-export JD_231111_proxyReceiveCount='10' 使用代理领取账号大于 10 切换ip 填数字
+export JD_231111_proxyReceiveCount='10' 使用代理领取账号大于 10 切换ip 填数字https://u.jd.com/kug2Pet
 */
 
 let rebateCodes = ''; // 返利变量
@@ -33,7 +33,7 @@ if ($.isNode()) {
 
 let liIi111l = "";
 if (!rebateCodes) {
-  rebateCodes = "https://u.jd.com/kug2Pet";
+  rebateCodes = "kug2Pet";
 }
 if (!liIi111l) {
   liIi111l = "";
