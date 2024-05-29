@@ -123,6 +123,7 @@ ENV_PATH=
 22 2,8 * * * node /scripts/jd_wxFans.js >> /log/jd_wxFans.log 2>&1
 42 2,8 * * * node /scripts/jd_wxgame.js >> /log/jd_wxgame.log 2>&1
 25 2,8 * * * node /scripts/jd_wish.js >> /log/jd_wish.log 2>&1
+00 20,21 * * * node /scripts/jd_618.js >> /log/jd_618.log 2>&1
 
 
 
