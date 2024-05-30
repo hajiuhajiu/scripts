@@ -9,7 +9,7 @@ JRBODY抓取网站:ms.jr.jd.com/gw/generic/hy/h5/m/appSign(进入金融APP签到
 变量填写示例:JRBODY: reqData=xxx&reqData=xxx&&reqData=xxx(比如第三个号没有,则留空,长度要与CK一致)
 强烈建议用文件,环境变量太长了
 云函数用户在config分支新建diy/JRBODY.txt即可(也就是diy文件夹下新建JRBODY.txt).每行一个jrbody,结尾行写'Finish'
-例子:
+例子:1
 reqData=xxx
 (这个号没有,这行空着)
 reqData=xxx
