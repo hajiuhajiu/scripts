@@ -27,7 +27,7 @@ ENV_PATH=
 # 非lxk0301/jd_scripts仓库中的脚本不能以“jd_”、“jr_”、“jx_”开头。请在最后保留一个空行。
 0 10 * * * node /scripts/jd_bean_change.js >> /log/jd_bean_change.log 2>&1
 #01 01,8  * * * node /scripts/jd_cleancart.js >> /log/jd_cleancart.log 2>&1
-33 0-23/4 * * * node /scripts/jd_bean_home.js >> /log/jd_bean_home.log 2>&1
+25 2,8,13 * * * node /scripts/jd_bean_home.js >> /log/jd_bean_home.log 2>&1
 0 0 * * * node /scripts/jd_bean_sign.js >> /log/jd_bean_sign.log 2>&1
 15 5-22/4 * * * node /scripts/jd_fruit_task.js >> /log/jd_fruit_task.log 2>&1
 12 */6 * * * node /scripts/jd_cfd_loop.js >> /log/jd_cfd_loop.log 2>&1
