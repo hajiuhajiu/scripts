@@ -1,5 +1,5 @@
 /*
-车管家签到
+车管家签到1
 
 cron "55 12 * * *" script-path=jd_car_sign.js, tag=车管家签到
 
