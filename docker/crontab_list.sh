@@ -31,7 +31,7 @@ ENV_PATH=
 0 0 * * * node /scripts/jd_bean_sign.js >> /log/jd_bean_sign.log 2>&1
 15 5-22/4 * * * node /scripts/jd_fruit_task.js >> /log/jd_fruit_task.log 2>&1
 12 */6 * * * node /scripts/jd_cfd_loop.js >> /log/jd_cfd_loop.log 2>&1
-50 05 * * * node /scripts/jd_car.js >> /log/jd_car.log 2>&1
+50 05,10 * * * node /scripts/jd_car.js >> /log/jd_car.log 2>&1
 22 0,9 * * * node /scripts/jd_ccSign.js >> /log/jd_ccSign.log 2>&1
 30 * * * * node /scripts/jd_cfd.js >> /log/jd_cfd.log 2>&1
 16 2,9,19 * * * node /scripts/jd_cfd_fresh.js >> /log/jd_cfd_fresh.log 2>&1
