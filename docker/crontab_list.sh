@@ -39,6 +39,7 @@ ENV_PATH=
 05 1,3,7 * * * node /scripts/jd_jchsign.js >> /log/jd_jchsign.log 2>&1
 05 03,14 * * * node /scripts/jd_cfdtx.js >> /log/jd_cfdtx.log 2>&1
 13 1,22,23 * * * node /scripts/jd_daily_lottery.js >> /log/jd_daily_lottery.log 2>&1
+10 0,4,10 * * * node /scripts/jd_dailysign.js >> /log/jd_dailysign.log 2>&1
 35 2 * * * node /scripts/jd_daydlt.js >> /log/jd_daydlt.log 2>&1
 18 1,10 * * * node /scripts/jd_djjl.js >> /log/jd_djjl.log 2>&1
 28 3,13 * * * node /scripts/jd_jddt.js >> /log/jd_jddt.log 2>&1
