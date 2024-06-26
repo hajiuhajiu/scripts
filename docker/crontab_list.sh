@@ -72,7 +72,6 @@ ENV_PATH=
 30 0,1,2 * * * node /scripts/jd_jdzz.js >> /log/jd_jdzz.log 2>&1
 15 6 * * * node /scripts/jd_jintie.js >> /log/jd_jintie.log 2>&1
 59 23,7,11,15 * * * node /scripts/jd_joy_reward.js >> /log/jd_joy_reward.log 2>&1
-1 0,11,21 * * * node /scripts/jd_jump.js >> /log/jd_jump.log 2>&1
 38 5 * * * node /scripts/jd_jxd.js >> /log/jd_jxd.log 2>&1
 3 4,6,11 * * * node /scripts/jd_joy_park.js >> /log/jd_joy_park.log 2>&1
 20 02,10 * * * node /scripts/jd_lsj.js >> /log/jd_lsj.log 2>&1
@@ -91,7 +90,6 @@ ENV_PATH=
 28 04,13 * * * node /scripts/jd_mohe.js >> /log/jd_mohe.log 2>&1
 26 02,8 * * * node /scripts/jd_nzmh.js >> /log/jd_nzmh.log 2>&1
 36 02,8 * * * node /scripts/jd_nh_sign.js >> /log/jd_nh_sign.log 2>&1
-5 1,10 * * * node /scripts/jd_necklace.js >> /log/jd_necklace.log 2>&1
 02 1,12 * * * node /scripts/jd_opencard.js >> /log/jd_opencard.log 2>&1
 12 2,13 * * * node /scripts/jd_orderlist.js >> /log/jd_orderlist.log 2>&1
 22 3,15 * * * node /scripts/jd_opencard1.js >> /log/jd_opencard1.log 2>&1
