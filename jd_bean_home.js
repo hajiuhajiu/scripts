@@ -66,31 +66,31 @@ async function jdBeanHome() {
         $.flag = true
         do {
             await doTask2()
-            await $.wait(3000)
+            await $.wait(6000)
         } while (!$.doneState && $.flag)
         if ($.flag) {
-            await $.wait(1000)
+            await $.wait(3000)
             await award("feeds")
-            await $.wait(1000)
+            await $.wait(3000)
             await getUserInfo()
-            await $.wait(1000)
+            await $.wait(3000)
             //await getTaskList();
             //await receiveJd2();
         }
         //await morningGetBean()
-        await $.wait(1000)
+        await $.wait(10000)
 
         await beanTaskList(1)
-        await $.wait(1000)
+        await $.wait(5000)
         await queryCouponInfo()
         $.doneState = false
         let num = 0
         do {
-            await $.wait(2000)
+            await $.wait(5000)
             await beanTaskList(2)
             num++
         } while (!$.doneState && num < 5)
-        await $.wait(2000)
+        await $.wait(5000)
         if ($.doneState) await beanTaskList(3)
 
         await showMsg();
