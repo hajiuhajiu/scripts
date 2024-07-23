@@ -4,6 +4,8 @@
 #青龙创建环境变量，变量名bydck，值为刚才抓的链接请求中的request的参数，多个账号就创建多个变量。
 #by莫老师，版本1.7
 #cron:5 6 * * *
+
+echo "比亚迪账号$s签到"
 ck=($(echo $bydck | sed 's/&/ /g'))
 url=dilinkappserver-cn.byd.auto
 for s in $(seq 0 1 $((${#ck[@]}-1)))
