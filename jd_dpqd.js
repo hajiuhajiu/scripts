@@ -11,186 +11,20 @@ cron 3 0,23 * * * jd_dpsign.js, tag=店铺签到
 */
 
 var token = [
-    "D00EA46256768FBE9047846685E6C87F": {
-        "id": "D00EA46256768FBE9047846685E6C87F",
-        "activityId": 12694882,
-        "shopName": "美丽雅（MARYYA）清洁用品京东自营旗舰店",
-        "is_expire": false,
-        "shopId": 1000470046,
-        "venderId": 1000470046,
-        "startTime": "2024-08-12 00:00",
-        "endTime": "2024-09-09 23:59",
-        "dayPrize": [
-            "2京豆(1万份)"
-        ],
-        "contPrize": [
-            "3天10京豆(0.1万份)"
-        ]
-    },
-    "7897121799F9771395DB494DBDB7214B": {
-        "id": "7897121799F9771395DB494DBDB7214B",
-        "activityId": 12694689,
-        "shopName": "宝莲白酒官方旗舰店",
-        "is_expire": false,
-        "shopId": 10582326,
-        "venderId": 10830104,
-        "startTime": "2024-08-12 00:00",
-        "endTime": "2024-08-13 23:59",
-        "dayPrize": [],
-        "contPrize": [
-            "2天20京豆(30份)"
-        ]
-    },
-    "CF77897CD93FFDDDB993704DCD150C99": {
-        "id": "CF77897CD93FFDDDB993704DCD150C99",
-        "activityId": 12694570,
-        "shopName": "勐库戎氏茶叶京东自营旗舰店",
-        "is_expire": false,
-        "shopId": 1000377507,
-        "venderId": 1000377507,
-        "startTime": "2024-08-12 00:00",
-        "endTime": "2024-08-18 23:59",
-        "dayPrize": [],
-        "contPrize": [
-            "7天100京豆(30份)"
-        ]
-    },
-    "3A0FC3CED6D46B2DEFC265E000E1482C": {
-        "id": "3A0FC3CED6D46B2DEFC265E000E1482C",
-        "activityId": 12694360,
-        "shopName": "瑞科声影音娱乐专营店",
-        "is_expire": false,
-        "shopId": 16141662,
-        "venderId": 17720650,
-        "startTime": "2024-08-11 05:45",
-        "endTime": "2024-08-18 23:59",
-        "dayPrize": [],
-        "contPrize": [
-            "3天5元红包(5份)"
-        ]
-    },
-    "41DD3A16CDB9468977C87C410C65CE7E": {
-        "id": "41DD3A16CDB9468977C87C410C65CE7E",
-        "activityId": 12691612,
-        "shopName": "日上官方旗舰店",
-        "is_expire": false,
-        "shopId": 10196288,
-        "venderId": 10342183,
-        "startTime": "2024-08-12 00:00",
-        "endTime": "2024-09-09 23:59",
-        "dayPrize": [
-            "5京豆(1万份)"
-        ],
-        "contPrize": [
-            "2天100京豆(50份)"
-        ]
-    },
-    "6D0F0F1D54CF19C96CB9146C2CF1AFCE": {
-        "id": "6D0F0F1D54CF19C96CB9146C2CF1AFCE",
-        "activityId": 12694048,
-        "shopName": "倾城鸟京东自营专区",
-        "is_expire": false,
-        "shopId": 1000364387,
-        "venderId": 1000364387,
-        "startTime": "2024-08-12 00:00",
-        "endTime": "2024-09-09 23:59",
-        "dayPrize": [
-            "100积分(100万份)"
-        ],
-        "contPrize": [
-            "3天10京豆(50份)"
-        ]
-    },
-    "5DEF5020ADC96AC076C86F6E55F85D9C": {
-        "id": "5DEF5020ADC96AC076C86F6E55F85D9C",
-        "activityId": 12694263,
-        "shopName": "占浩大药房旗舰店",
-        "is_expire": false,
-        "shopId": 12902337,
-        "venderId": 13698388,
-        "startTime": "2024-08-12 00:00",
-        "endTime": "2024-09-09 23:59",
-        "dayPrize": [],
-        "contPrize": [
-            "5天100京豆(100份)"
-        ]
-    },
-    "50D5ACFD1F4DD2FA05D97B1DB5BDB0AD": {
-        "id": "50D5ACFD1F4DD2FA05D97B1DB5BDB0AD",
-        "activityId": 12693524,
-        "shopName": "碧素堂官方旗舰店",
-        "is_expire": false,
-        "shopId": 133041,
-        "venderId": 137184,
-        "startTime": "2024-08-12 00:00",
-        "endTime": "2024-08-17 23:59",
-        "dayPrize": [],
-        "contPrize": [
-            "7天100京豆(100份)"
-        ]
-    },
-    "1B27B8885C333727C26E5F3F0530C57E": {
-        "id": "1B27B8885C333727C26E5F3F0530C57E",
-        "activityId": 12690336,
-        "shopName": "正山顶茗茶京东自营官方旗舰店",
-        "is_expire": false,
-        "shopId": 1000361681,
-        "venderId": 1000361681,
-        "startTime": "2024-08-10 00:00",
-        "endTime": "2024-08-16 23:59",
-        "dayPrize": [
-            "50积分(10万份)"
-        ],
-        "contPrize": [
-            "3天30京豆(100份)",
-            "6天100京豆(100份)"
-        ]
-    },
-    "A2397809C9D1A5F368241E73402E1EC6": {
-        "id": "A2397809C9D1A5F368241E73402E1EC6",
-        "activityId": 12692506,
-        "shopName": "纳美京东自营官方旗舰店",
-        "is_expire": false,
-        "shopId": 1000098782,
-        "venderId": 1000098782,
-        "startTime": "2024-08-10 00:00",
-        "endTime": "2024-08-31 23:59",
-        "dayPrize": [
-            "10积分(10万份)"
-        ],
-        "contPrize": [
-            "7天100京豆(100份)"
-        ]
-    },
-    "EAD352F1A6290101928800D7E99C48A1": {
-        "id": "EAD352F1A6290101928800D7E99C48A1",
-        "activityId": 12687310,
-        "shopName": "提拉米（TLAMEE）京东自营旗舰店",
-        "is_expire": false,
-        "shopId": 1000365704,
-        "venderId": 1000365704,
-        "startTime": "2024-08-09 00:00",
-        "endTime": "2024-08-31 23:59",
-        "dayPrize": [],
-        "contPrize": [
-            "7天100京豆(50份)"
-        ]
-    },
-    "A36126E607C97A6BAFB13E1E8ECEC369": {
-        "id": "A36126E607C97A6BAFB13E1E8ECEC369",
-        "activityId": 12689321,
-        "shopName": "味当家旗舰店",
-        "is_expire": false,
-        "shopId": 13378941,
-        "venderId": 14542789,
-        "startTime": "2024-08-09 00:00",
-        "endTime": "2024-08-31 23:59",
-        "dayPrize": [],
-        "contPrize": [
-            "7天100京豆(300份)"
-        ]
-    }
+    "D00EA46256768FBE9047846685E6C87F",
+    "7897121799F9771395DB494DBDB7214B",
+    "CF77897CD93FFDDDB993704DCD150C99",
+    "3A0FC3CED6D46B2DEFC265E000E1482C" ,
+    "41DD3A16CDB9468977C87C410C65CE7E",
+    "6D0F0F1D54CF19C96CB9146C2CF1AFCE",
+    "5DEF5020ADC96AC076C86F6E55F85D9C",
+    "50D5ACFD1F4DD2FA05D97B1DB5BDB0AD",
+    "1B27B8885C333727C26E5F3F0530C57E",
+    "A2397809C9D1A5F368241E73402E1EC6",
+    "EAD352F1A6290101928800D7E99C48A1",
+    "A36126E607C97A6BAFB13E1E8ECEC369",
 ]
+        
 
 
 
