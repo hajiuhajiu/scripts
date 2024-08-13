@@ -10,7 +10,7 @@ C"
 cron 3 0,23 * * * jd_dpsign.js, tag=店铺签到
 */
 
-var token = {
+var token = [
     "D00EA46256768FBE9047846685E6C87F": {
         "id": "D00EA46256768FBE9047846685E6C87F",
         "activityId": 12694882,
@@ -190,7 +190,7 @@ var token = {
             "7天100京豆(300份)"
         ]
     }
-}
+]
 
 
 
