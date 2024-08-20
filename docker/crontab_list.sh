@@ -122,7 +122,12 @@ ENV_PATH=
 15 0-23/4 * * * node /scripts/jd_unsubscribe.js >> /log/jd_unsubscribe.log 2>&1
 22 2,8 * * * node /scripts/jd_wxFans.js >> /log/jd_wxFans.log 2>&1
 42 2,8 * * * node /scripts/jd_wxgame.js >> /log/jd_wxgame.log 2>&1
-25 2,8 * * * node /scripts/jd_wish.js >> /log/jd_wish.log 2>&1
+12 7,8 * * * node /scripts/jd_wyw_y1y.js >> /log/jd_wyw_y1y.log 2>&1
+22 6,9 * * * node /scripts/jd_wyw_help.js >> /log/jd_wyw_help.log 2>&1
+32 5,10 * * * node /scripts/jd_wyw_ffl.js >> /log/jd_wyw_ffl.log 2>&1
+52 4,11 * * * node /scripts/jd_wyw_cai_draw.js >> /log/jd_wyw_cai_draw.log 2>&1
+14 3,12 * * * node /scripts/jd_wyw_award.js >> /log/jd_wyw_award.log 2>&1
+25 2,13 * * * node /scripts/jd_wish.js >> /log/jd_wish.log 2>&1
 00 20,21 * * * node /scripts/jd_618.js >> /log/jd_618.log 2>&1
 
 
