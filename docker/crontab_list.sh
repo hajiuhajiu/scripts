@@ -60,6 +60,7 @@ ENV_PATH=
 18 6-23/4 * * * node /scripts/jd_fruitn.js >> /log/jd_fruitn.log 2>&1
 05 0,1 * * * node /scripts/jd_fan.js >> /log/jd_fan.js 2>&1
 13 1,7,22 * * * node /scripts/jd_health.js >> /log/jd_health.log 2>&1
+55 3,21 * * * node /scripts/jd_hdcheck.js >> /log/jd_hdcheck.log 2>&1
 28 12 * * * node /scripts/jd_jrdraw.js >> /log/jd_jrdraw.log 2>&1
 25 12 * * * node /scripts/jd_jintie_wx.js >> /log/jd_jintie_wx.log 2>&1
 47 7 * * * node /scripts/jd_get_share_code.js >> /log/jd_get_share_code.log 2>&1
