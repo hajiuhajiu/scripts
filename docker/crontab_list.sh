@@ -117,7 +117,7 @@ ENV_PATH=
 22 01,9 * * * node /scripts/jd_star_shop.js >> /log/jd_star_shop.log 2>&1
 00 00,10 * * * node /scripts/jd_superMarket.js >> /log/jd_superMarket.log 2>&1
 18 1,8,13 * * * node /scripts/jd_try.js >> /log/jd_try.log 2>&1
-38 17 * * * node /scripts/jd_try_notify.js >> /log/jd_try_notify.log 2>&1
+38 4,11 * * * node /scripts/jd_tejiayqs.js >> /log/jd_tejiayqs.log 2>&1
 10 0,10 * * * node /scripts/jd_twz-star.js >> /log/jd_twz-star.log 2>&1
 38 17 * * * node /scripts/jd_unbind.js >> /log/jd_unbind.log 2>&1
 15 0-23/4 * * * node /scripts/jd_unsubscribe.js >> /log/jd_unsubscribe.log 2>&1
