@@ -1,4 +1,3 @@
-
 /*
 活动名称：批量店铺签到（活动查询）
 活动链接：https://h5.m.jd.com/babelDiy/Zeus/2PAAf74aG3D61qvfKUM5dxUssJQ9/index.html?token=<token>
