@@ -131,7 +131,7 @@ ENV_PATH=
 14 3,12 * * * node /scripts/jd_wyw_award.js >> /log/jd_wyw_award.log 2>&1
 25 2,13 * * * node /scripts/jd_wish.js >> /log/jd_wish.log 2>&1
 00 20,21 * * * node /scripts/jd_618.js >> /log/jd_618.log 2>&1
-
+00 8,20 * * * node /scripts/jd_xnchl_draw.js >> /log/jd_xnchl_draw.log 2>&1
 
 
 
