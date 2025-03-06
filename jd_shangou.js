@@ -1,5 +1,5 @@
 /*
-23 3,16 * * * jd_farmshare.js
+23 3,16 29 2 * jd_farmshare.js
 */
 
 const $ = new Env('农场小程序助力');
