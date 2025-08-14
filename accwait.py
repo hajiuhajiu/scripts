@@ -15,7 +15,7 @@ if len(sys.argv) >= 3:
 if len(sys.argv) >= 4:
     minute = int(sys.argv[3])
 
-if padding == 0 or interval == 0:
+if padding == 0 or interval == 0: 
     second_setting = 0
     ms_setting = 0
 else:
